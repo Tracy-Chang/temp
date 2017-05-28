@@ -1,5 +1,5 @@
 /**
- * 需求主题
+ * 需求主题 #0bad0b
  * author tracy
  */
 @import url(./base);
@@ -13,9 +13,21 @@ body{
 	font-size: 30px;
 	height: 430px;
 	text-align: center;
-	vertical-align: middle;
-	line-height: 430px;
 	background-color: #fff;
+	line-height: 430px;
+	div{
+		line-height: normal;
+		img{
+			width: 200px;
+			height: 200px;
+			display: inline-block;
+			margin-top: 60px;
+		}
+		p{
+			height: 40px;
+			font-size: 30px;
+		}
+	}
 }
 .form,.address,.service{
 	background-color: #fff;
@@ -82,14 +94,18 @@ body{
 	top: 0;
 	background-color: #f0f0f0;
 	font-size: 30px;
+	overflow: scroll;
 	display: none;
 	.title{
+		width: 100%;
 		background-color: #fff;
 		height: 80px;
 		margin-bottom: 20px;
 		text-align: center;
 		line-height: 80px;
 		overflow: hidden;
+		position: fixed;
+		top: 0;
 		i{
 			width: 20px;
 			height: 20px;
@@ -101,31 +117,51 @@ body{
 			margin: 31px 30px;
 		}
 	}
-	li{
+	dl{
 		background-color: #fff;
 		border-bottom: 1px solid #ccc;
-		display: flex;
-		align-items: center;
-		img:nth-child(1){
-			width: 200px;
-			height: 200px;
-			margin: 0 20px;
-			flex-grow: 0;
-			flex-shrink: 0;
+		overflow: hidden;
+		dt{
+			margin: 20px 40px;
 		}
-		div:nth-child(2){
-			flex-grow: 1;
-			overflow: hidden;
-			text-overflow: ellipsis;
-			white-space: nowrap;
+		dd{
+			display: flex;
+			align-items: center;
+			border: 1px solid #ccc;
+			margin: 10px 40px;
+			img:nth-child(1){
+				width: 200px;
+				height: 200px;
+				margin: 0 20px;
+				flex-grow: 0;
+				flex-shrink: 0;
+			}
+			div:nth-child(2){
+				flex-grow: 1;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+			div:nth-child(3){
+				width: 150px;
+				text-align: center;
+				color: #0bad0b;
+				flex-grow: 0;
+				flex-shrink: 0;
+			}
 		}
-		div:nth-child(3){
-			width: 150px;
-			text-align: center;
-			color: #0bad0b;
-			flex-grow: 0;
-			flex-shrink: 0;
+		dd:last-child{
+			border: none;
+			span{
+				color: #fff;
+				background-color: #0bad0b;
+				margin: 20px 20px 20px 0;
+				padding: 10px 20px;
+			}
 		}
+	}
+	dl:nth-child(2){
+		margin-top: 110px;
 	}
 }
 .address-detail{

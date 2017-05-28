@@ -7,49 +7,63 @@
 	<link rel="stylesheet" href="../static/css/my.css">
 </head>
 <body>
-	<div class="user">用户登录</div>
+	<!-- 用户信息 -->
+	<div class="user"><div></div></div>
+	<!-- 订单列表 -->
 	<div class="form">我的订单<i></i></div>
+	<!-- 地址列表 -->
 	<div class="address">我的地址<i></i></div>
+	<!-- 客服列表 -->
 	<a href="tel:10010"><div class="service">联系客服<i></i></div></a>
-	<div class="bottom-nav">
-		<ul>
-			<li><a href="./main.html"><img src="../static/images/index.png"><span>首页</span></a></li>
-			<li><a href="./shopping-cart.html"><img src="../static/images/buy-car.png">购物车</a></li>
-			<li><a href="./my.html"><img src="../static/images/my-active.png">我的</a></li>
-		</ul>
-	</div>
+	<!-- 底部浮层 -->
+	<ul class="bottom-nav">
+		<li><a href="./main.html"><img src="../static/images/index.png"><span>首页</span></a></li>
+		<li><a href="./shopping-cart.html"><img src="../static/images/buy-car.png">购物车</a></li>
+		<li><a href="./my.html"><img src="../static/images/my-active.png">我的</a></li>
+	</ul>
+	<!-- 我的表单 -->
 	<div class="form-detail">
 		<div class="title"><i id="form_hidden"></i>我的订单</div>
-		<ul>
-			<li>
-				<img src="../static/images/commodity.jpg">
-				<div class="time">2017-05-11 12:30:00</div>
-				<div class="price">￥3元</div>
-			</li>
-			<li>
-				<img src="../static/images/commodity.jpg">
-				<div class="time">2017-05-11 12:30:00</div>
-				<div class="price">￥3元</div>
-			</li>
-		</ul>
 	</div>
+	<!-- 我的地址 -->
 	<div class="address-detail">
 		<div class="address-title"><i id="address_hidden"></i>我的地址</div>
-		<ul>
-			<li>
-				<div class="edit">编辑</div>
-				<div class="my-name">名字</div>
-				<div class="my-phone">13203505678</div>
-				<div class="my-address">地址地址地址地址地址地址地址</div>
-			</li>
-			<li>
-				<div class="edit">编辑</div>
-				<div class="my-name">名字</div>
-				<div class="my-phone">13203505678</div>
-				<div class="my-address">地址地址地址地址地址地址地址</div>
-			</li>
-		</ul>
 	</div>
+	<!-- form Temp -->
+	<script id="formTemplate" type="text/template">
+		var data = this.result;
+		for(var i = 0; i < data.length; i++) {
+			<dl>
+				<dt>#{data[i].time}</dt>
+				for(var j = 0; j < data[i].list.length; j++){
+					<dd>
+						<img src="../static/images/commodity.jpg">
+						<div>#{data[i].list[j].name}</div>
+						<div class="price">￥#{data[i].list[j].price}元</div>
+					</dd>
+				}
+				<dd>
+					<span>付款</span>
+					<span>签收</span>
+					<span>删除</span>
+				</dd>
+			</dl>
+		}
+	</script>
+	<!-- 地址管理 template -->
+	<script id="addressTemplate" type="text/template">
+		var data = this.result;
+		for(var i = 0; i < data.length; i++) {
+			<ul>
+				<li>
+					<div class="edit">编辑</div>
+					<div class="my-name">#{data[i].name}</div>
+					<div class="my-phone">#{data[i].phone}</div>
+					<div class="my-address">#{data[i].address}</div>
+				</li>
+			</ul>
+		}
+	</script>
 	<!--=include ./common/foot.html-->
 	<script charset="utf-8" src="../static/js/my.js"></script>
 </body>

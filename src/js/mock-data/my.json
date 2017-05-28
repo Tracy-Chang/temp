@@ -1,0 +1,78 @@
+我的相关接口
+
+
+订单信息接口
+
+参数： uid
+
+请求类型： get
+
+{
+	"resultcode":1, //1成功 0失败
+	"result|1-3": [
+		{
+			"time": "20170520 12:20", //订单时间
+			"list|1-3": [  //订单物品list
+				{
+					"url": "",
+					"name": "",
+					"price|1-3": ""
+				}
+			],
+			"pay": "ture", //支付与否
+			"confirm": "ture", //签收
+			"delete": "false" //是否删除
+		}
+	],
+	"resultmsg":"获取成功"
+}
+
+我的地址接口
+
+参数：uid
+
+请求类型：get
+
+{
+	"resultcode":1, //1成功 0失败
+	"result|1-5": [
+		{
+			"address": "地址", //地址
+			"phone": "10086",
+			"name": "新龙城"
+		},
+		{
+			"address": "地址", //地址
+			"phone": "10086",
+			"name": "新龙城"
+		}
+	],
+	"resultmsg":"获取成功"
+}
+
+
+删除地址接口
+
+参数，uid，地址id
+
+请求类型：get
+
+返回数据
+{
+	"resultcode":1, //1成功 0失败
+	"result": [],
+	"resultmsg":"获取成功"
+}
+
+删除订单接口
+
+参数，uid，订单uid
+
+请求类型：get
+
+返回数据
+{
+	"resultcode":1, //1成功 0失败
+	"result": [],
+	"resultmsg":"获取成功"
+}

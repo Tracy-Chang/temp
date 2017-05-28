@@ -71,7 +71,7 @@ function font(){
 
 //清除构建后的图片
 function cleanimages(){
-	return gulp.src('build/static/images/**/*.{png,jpg}')
+	return gulp.src('build/static/images/**/*.{png,jpg,gif}')
 			.pipe(clean({force: true}))
 			.on('error', function(error){
 				console.log(error);
@@ -79,7 +79,7 @@ function cleanimages(){
 }
 //图片task
 function images(){
-	return gulp.src('src/image/**/*.{png,jpg}')
+	return gulp.src('src/image/**/*.{png,jpg,gif}')
 			.pipe(gulp.dest('build/static/images'));
 }
 
@@ -194,7 +194,7 @@ function watcher(done){
 	var cssWatcher = gulp.watch('src/css/**/**/*.less');
 	var jsWatcher = gulp.watch(['src/js/modules/*.js','src/js/entrance/**/*.js']);
 	var boundleWatcher = gulp.watch('src/js/libs/*.js');
-	var imageWatcher = gulp.watch('src/image/*.{png,jpg}');
+	var imageWatcher = gulp.watch('src/image/*.{png,jpg,gif}');
 	var fontWatcher = gulp.watch('src/font/**/*');
 	var htmlWatcher = gulp.watch('src/views/**/**');
 

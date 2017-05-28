@@ -1,0 +1,120 @@
+购物车相关接口
+
+详细地址接口
+
+参数：uid
+
+请求类型：get
+
+{
+	"resultcode":1, //1成功 0失败
+	"result": [
+		{
+			"address": "铭科苑5栋3单元402"
+		}
+	],
+	"resultmsg":"获取成功"
+}
+
+修改地址接口
+
+参数：uid，addressDetail(地址详情)
+
+请求类型：get
+
+{
+	"resultcode":1, //1成功 0失败
+	"result": [],
+	"resultmsg":"获取成功"
+}
+
+
+购物车清单接口	http://localhost:8080/ls/query
+
+请求参数： uid
+
+请求类型：get
+
+{
+	"result": {
+		"list": [
+		  	{
+			    "code": "Lyltsbss001",
+			    "count": "12",
+			    "detail": "百事可乐330ml听装",
+			    "id": "8",
+			    "marPrice": "2.00",
+			    "price": "1.80",
+			    "url": "http://www.earthcenter.com.cn/Lyltsbss001"
+		  	},
+	  		{
+			    "code": "Lyltsbss006",
+			    "count": "12",
+			    "detail": "百事七喜330ml听装",
+			    "id": "13",
+			    "marPrice": "2.00",
+			    "price": "1.80",
+			    "url": "http://www.earthcenter.com.cn/Lyltsbss006"
+		  	},
+		  	{
+			    "code": "Lyltsbss102",
+			    "count": "12",
+			    "detail": "百事可乐600ml",
+			    "id": "9",
+			    "marPrice": "3.00",
+			    "price": "2.50",
+			    "url": "http://www.earthcenter.com.cn/Lyltsbss102"
+		  	},
+		  	{
+			    "code": "Lyltsbss104",
+			    "count": "12",
+			    "detail": "百事美年达桃味600ml",
+			    "id": "11",
+			    "marPrice": "3.00",
+			    "price": "2.50",
+			    "url": "http://www.earthcenter.com.cn/Lyltsbss104"
+	  		},
+		  	{
+			    "code": "Lyltsbss105",
+			    "count": "12",
+			    "detail": "百事美年达橙味600ml",
+			    "id": "12",
+			    "marPrice": "3.00",
+			    "price": "2.50",
+			    "url": "http://www.earthcenter.com.cn/Lyltsbss105"
+		  	}
+		]
+	},
+	"resultcode": "1",
+	"resultmsg": "查询成功"
+}
+
+
+下单接口
+
+请求参数：uid，商品list，
+
+请求类型：get
+
+商品list
+[
+	{
+		"code": "xxx",
+		"number": "3"
+	},
+	{
+		"code": "xxx",
+		"number": "3"
+	},
+	{
+		"code": "xxx",
+		"number": "3"
+	}
+]
+
+返回数据
+{
+	"resultcode":1, //1成功 0失败
+	"result": [],
+	"resultmsg":"获取成功"
+}
