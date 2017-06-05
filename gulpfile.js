@@ -192,7 +192,7 @@ function htmlreBuild(){
 //watcher
 function watcher(done){
 	var cssWatcher = gulp.watch('src/css/**/**/*.less');
-	var jsWatcher = gulp.watch(['src/js/modules/*.js','src/js/entrance/**/*.js']);
+	var jsWatcher = gulp.watch(['src/js/modules/*.js','src/js/entrance/**/*.js','src/js/mock-data/*.js']);
 	var boundleWatcher = gulp.watch('src/js/libs/*.js');
 	var imageWatcher = gulp.watch('src/image/*.{png,jpg,gif}');
 	var fontWatcher = gulp.watch('src/font/**/*');

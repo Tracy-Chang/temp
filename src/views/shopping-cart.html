@@ -7,36 +7,54 @@
 	<link rel="stylesheet" href="../static/css/shopping-cart.css">
 </head>
 <body>
-	<div class="address"><img src="../static/images/my-dizhi.png">地址</div>
+	<!-- 地址 -->
+	<div class="address"><img src="../static/images/my-dizhi.png"><span>地址</span></div>
+	<div class="address-detail">
+		<label>姓名：</label><input type="text" name="address" value="" placeholder="请输入姓名"></br>
+		<label>手机：</label><input type="text" name="address" value="" placeholder="请输入手机号"></br>
+		<label>地址：</label><input type="text" name="address" value="" placeholder="请输入收货地址"></br>
+	</div>
+	<!-- 送达时间 -->
 	<div class="arrive">2小时后送达<!-- <i></i> --></div>
-	<ul class="commodity">
-		<li>
-			<i></i>
-			<img src="../static/images/commodity.jpg">
-			<div class="info">价格</div>
-			<div class="number">数量</div>
-		</li>
-		<li>
-			<i></i>
-			<img src="../static/images/commodity.jpg">
-			<div class="info">价格</div>
-			<div class="number">数量</div>
-		</li>
-	</ul>
+	<!-- 商品 -->
+	<ul class="commodity"></ul>
+	<!-- 商品信息 -->
 	<ul class="commodity-info">
-		<li>商品价格<span>￥25元</span></li>
-		<li>运费<span>￥0元</span></li>
+		<li>商品价格<span class="allPrice">￥0元</span></li>
+		<li>运费<span class="carriagePrice">￥0元</span></li>
 	</ul>
+	<!-- 下单 -->
 	<ul class="buy">
-		<li><i></i>全选</li>
-		<li>合计<span>￥25元</span></li>
+		<li class="all-select"><i class="select"></i>全选</li>
+		<li>合计<span class="allPrice">￥0元</span></li>
 		<li id="buy_commodity">去下单<i></i></li>
 	</ul>
+	<!-- 底部导航 -->
 	<ul class="bottom-nav">
 		<li><a href="./main.html"><img src="../static/images/index.png"><span>首页</span></a></li>
 		<li><a href="./shopping-cart.html"><img src="../static/images/buy-car-active.png">购物车</a></li>
 		<li><a href="./my.html"><img src="../static/images/my.png">我的</a></li>
 	</ul>
+	<!-- 物品栏template -->
+	<script id="commodityTemplate" type="text/template">
+		var data = this.result;
+		var list = data.list;
+		for (var i = 0; i < list.length; i++) {
+			<li>
+				<i class="select"></i>
+				<img src="#{list[i].url}">
+				<div class="info">
+					<p>#{list[i].detail}</p>
+					<p>#{list[i].price}元</p>
+				</div>
+				<div class="number">
+					<img do="reduce" src="../static/images/reduce-img.png">
+					<input class="commodity-number" type="text" name="#{list[i].code}" value="1">
+					<img do="add" src="../static/images/add-img.png">
+				</div>
+			</li>
+		}
+	</script>
 	<!--=include ./common/foot.html-->
 	<script charset="utf-8" src="../static/js/shopping-cart.js"></script>
 </body>

@@ -28,6 +28,7 @@
 	<!-- 我的地址 -->
 	<div class="address-detail">
 		<div class="address-title"><i id="address_hidden"></i>我的地址</div>
+		<ul class="address-list"></ul>
 	</div>
 	<!-- form Temp -->
 	<script id="formTemplate" type="text/template">
@@ -38,14 +39,22 @@
 				for(var j = 0; j < data[i].list.length; j++){
 					<dd>
 						<img src="../static/images/commodity.jpg">
-						<div>#{data[i].list[j].name}</div>
-						<div class="price">￥#{data[i].list[j].price}元</div>
+						<div>
+							<p>#{data[i].list[j].name}</p>
+							<p class="price">#{data[i].list[j].price}元</p>
+						</div>
+						<div>x#{data[i].list[j].number}</div>
 					</dd>
 				}
+				<p>总价格：<span>#{data[i].totalPrice}元</span></p>
 				<dd>
-					<span>付款</span>
-					<span>签收</span>
-					<span>删除</span>
+					if (data[i].pay) {
+						<span formId="formId" class="no-pay">已付款</span>
+					} else {
+						<span formId="formId" do="pay">付款</span>
+					}
+					<!-- <span>签收</span> -->
+					<span formId="formId" class="remove-form" do="delete">删除</span>
 				</dd>
 			</dl>
 		}
@@ -54,14 +63,15 @@
 	<script id="addressTemplate" type="text/template">
 		var data = this.result;
 		for(var i = 0; i < data.length; i++) {
-			<ul>
-				<li>
-					<div class="edit">编辑</div>
-					<div class="my-name">#{data[i].name}</div>
-					<div class="my-phone">#{data[i].phone}</div>
-					<div class="my-address">#{data[i].address}</div>
-				</li>
-			</ul>
+			<li>
+				<div class="edit">
+					<!-- <button code="#{data[i].id}" action="edit">编辑</button> -->
+					<button code="#{data[i].id}" action="delete">删除</button>
+				</div>
+				<div class="my-name">姓名：#{data[i].name}</div>
+				<div class="my-phone">电话：#{data[i].phone}</div>
+				<div class="my-address">地址：#{data[i].address}</div>
+			</li>
 		}
 	</script>
 	<!--=include ./common/foot.html-->

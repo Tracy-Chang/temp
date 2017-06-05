@@ -9,33 +9,52 @@ define(['../../../node_modules/mockjs/dist/mock-min'],function(Mock){
 			"resultcode":1, //1成功 0失败
 			"result|1-3": [
 				{
+					"formId": "111",
 					"time": "20170520 12:20", //订单时间
 					"list|1-3": [  //订单物品list
 						{
 							"url": 'xxx',
-							"name": '',
-							"price|1-3": '2'
+							"name": '可口可乐',
+							"price": '1.80',
+							"number": '3'
 						}
 					],
-					"pay": "ture", //支付与否
-					"confirm": "ture", //签收
-					"delete": "false" //是否删除
+					"pay|1-2": true, //支付与否
+					"confirm": true, //签收
+					"totalPrice": 30
 				}
 			],
 			"resultmsg":"获取成功"
 		}
 	);
-	//地址
-	Mock.mock('address',
+	//地址list
+	Mock.mock(/http:\/\/localhost:8080\/address\/query/,
 		{
 			"resultcode":1, //1成功 0失败
 			"result|1-5": [
 				{
+					"id|1-3": "1",
 					"address|1-3": "地址", //地址
 					"phone": "10086",
-					"name": "新龙城"
+					"name": "翠西"
 				}
 			],
+			"resultmsg":"获取成功"
+		}
+	);
+	//删除地址
+	Mock.mock(/http:\/\/localhost:8080\/address\/delete/,
+		{
+			"resultcode":1, //1成功 0失败
+			"result": [],
+			"resultmsg":"获取成功"
+		}
+	);
+	//删除订单
+	Mock.mock(/delForm/,
+		{
+			"resultcode":1, //1成功 0失败
+			"result": [],
 			"resultmsg":"获取成功"
 		}
 	);

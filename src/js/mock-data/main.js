@@ -109,7 +109,7 @@ define(['../../../node_modules/mockjs/dist/mock-min'],function(Mock){
 		}
 	);
 	//购物车
-	Mock.mock('shopingCart',
+	Mock.mock(/\/\/localhost:8080\/shopping\/add/,
 		{
 			"resultcode":1, //1成功 0失败
 			"result": [

@@ -3,15 +3,15 @@
  * author  tracy
  */
 require([
-	'../libs/AceTemplate',
-	'../mock-data/my'
+	'../libs/AceTemplate'/*,
+	'../mock-data/my'*/
 	], function () {
 
 	//ajax接口
 	var formDetail = 'form',
-		addressDetail = 'address',
-		delForm = 'delForm',
-		delAddress = 'delAdd';
+		addressDetail = 'http://localhost:8080/address/query',
+		delFormPort = 'delForm',
+		delAddressPort = 'http://localhost:8080/address/delete';
 
 	function ajax(url, data, callback) {
 		$.ajax({
@@ -27,7 +27,8 @@ require([
 
 	//用户状态逻辑
 	var userImg = '../static/images/commodity.jpg' || '',
-		userName = '翠西';
+		userName = '翠西',
+		uid = '1111111';
 
 	if (userImg) {
 		var userHtml = '<img src="' + userImg + '"/>' + '<p>' + userName + '</p>';
@@ -71,10 +72,60 @@ require([
 	//订单切换
 	$('.form,#form_hidden').on('click', showOrHideMyList('form-detail'));
 
+	//删除订单逻辑
+	$('.form-detail').on('click', function(e) {
+		var dom = $(e.target),
+			formId = dom.attr('formId');
+		if (dom.attr('do') == 'delete') {
+			ajax(delFormPort, {uid: uid, formId: formId}, function(data) {
+				data = JSON.parse(data);
+				if (data.resultcode == 1) {
+					dom.parents('dl').remove()
+				}
+			});
+		} else if (dom.attr('do') == 'pay') {
+			console.log('支付');
+		}
+	});
+
 
 	//我的地址逻辑
 	//地址DOM生成
-	ajax(addressDetail, {}, setTemplateDom('addressTemplate', 'address-detail'));
+	ajax(addressDetail, {}, setTemplateDom('addressTemplate', 'address-list'));
 	//我的地址切换
 	$('.address,#address_hidden').on('click', showOrHideMyList('address-detail'));
+
+	/**
+	 * 删除地址后的callback
+	 * @param  {[type]} e [获取点击DOM结构]
+	 * @return {[type]}      [description]
+	 */
+	function delAddress(e) {
+		return function(data) {
+			data = JSON.parse(data);
+			if (data.resultcode == 1) {
+				$(e.target).parents('li').remove();
+			}
+		}
+	}
+
+	//我的地址编辑或删除
+	$('.address-list').on('click', function(e) {
+		var code;
+		if($(e.target).attr('action') == 'edit') {
+			console.log('编辑');
+		} else if($(e.target).attr('action') == 'delete') {
+			code = $(e.target).attr('code');
+			ajax(delAddressPort, {uid: uid, code: code}, delAddress(e));
+		}
+	})
+
+	/*var param = $('#myform').serialize();
+	$.ajax({
+		type: 'get',
+		url: 'http:/baidu.com',
+		data: param,
+		success: function() {},
+		error: function() {}
+	})*/
 });

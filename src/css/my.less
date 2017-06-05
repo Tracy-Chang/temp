@@ -141,13 +141,22 @@ body{
 				overflow: hidden;
 				text-overflow: ellipsis;
 				white-space: nowrap;
+				p{
+					margin: 20px 0;
+				}
 			}
 			div:nth-child(3){
-				width: 150px;
+				width: 100px;
 				text-align: center;
 				color: #0bad0b;
 				flex-grow: 0;
 				flex-shrink: 0;
+			}
+		}
+		p{
+			margin: 20px 40px;
+			span{
+				color: #0bad0b;
 			}
 		}
 		dd:last-child{
@@ -155,8 +164,11 @@ body{
 			span{
 				color: #fff;
 				background-color: #0bad0b;
-				margin: 20px 20px 20px 0;
+				margin: 0px 20px 20px 0;
 				padding: 10px 20px;
+			}
+			.no-pay{
+				background-color: #ccc;
 			}
 		}
 	}
@@ -200,6 +212,15 @@ body{
 		.edit{
 			float: right;
 			line-height: 120px;
+			button{
+				display: block;
+				padding: 10px;
+				background-color: #fff;
+				border: 1px solid #aaa;/* px */
+			}
+			button:nth-child(2){
+				margin-top: 20px;
+			}
 		}
 	}
 }

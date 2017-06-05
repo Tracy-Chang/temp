@@ -1,0 +1,3 @@
+首页： cookie  带uid，默认地址（address）
+
+session: 默认小区名，手动填的具体地址，uid，总价格（交互不太好），

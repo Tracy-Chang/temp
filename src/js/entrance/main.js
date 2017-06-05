@@ -10,13 +10,17 @@ require([
 	//接口地址
 	var navUrl = '//www.earthcenter.com.cn:8081/lstype/query',
 		listUrl = '//www.earthcenter.com.cn:8081/ls/query',
-		addressUrl = '//www.earthcenter.com.cn:8081/community/query';
+		addressUrl = '//www.earthcenter.com.cn:8081/community/query',
+		shoppingCart = '//localhost:8080/shopping/add';
+
+	var uid = '111';
+	var defaultAddress = '新龙城';
 
 	//url
 	var loadingImg = 'http://localhost/static/images/loading.gif';
 
 	//各个接口的唯一标识
-	var addressCode = false || '',  //地址code
+	var addressCode = localStorage.getItem('addressCode') || '',  //地址code
 		classfiyCode = 'qb',  //分类code
 		listPage = 1,  //请求页数
 		commodityCode = false || ''; //商品code
@@ -57,9 +61,11 @@ require([
 		$('.nav')[0].innerHTML = AceTemplate.format('navTemp', data);
 		//nav绑定点击事件
 		$('.nav').on('click', function(e) {
+			listPage = 1;
 			$('.nav').children().removeClass('active');
 			$(e.target).addClass('active');
 			classfiyCode = $(e.target).attr('code');
+			$('.list').html('');
 			getListData();
 		})
 	}
@@ -69,9 +75,15 @@ require([
 	 * @param {[type]} data [list接口返回数据]
 	 */
 	function setList(data) {
+		//del loading
 		$('.list').children().last().remove();
 		data = JSON.parse(data);
-		$('.list').append(AceTemplate.format('listTemp', data));
+		if (data.result.lastPage) {
+			$(document).off('scroll');
+			$('.list').append('<li><p class="no-data">没有更多数据了</p></li>');
+		} else {
+			$('.list').append(AceTemplate.format('listTemp', data));	
+		}
 	}
 
 	/**
@@ -91,10 +103,10 @@ require([
 	ajax(addressUrl, {}, setAddress);
 
 	//判断是否有默认地址-有的话，隐藏地址，请求nav和list
-	var defaultAddress = '';
 	if (defaultAddress) {
 		$('.address').html(defaultAddress);
 		$('.select-address').hide();
+		sessionStorage.setItem('defaultAddress', defaultAddress);
 		getNavData();
 		getListData();
 	}
@@ -109,7 +121,9 @@ require([
 		if(e.target.nodeName.toLowerCase() == 'span') {
 			$('.select-address').hide();
 			$('.address').html(e.target.innerHTML);
+			sessionStorage.setItem('defaultAddress', e.target.innerHTML);
 			addressCode = $(e.target).attr('code');
+			localStorage.setItem('addressCode', addressCode);
 			getNavData();
 			getListData();
 		}
@@ -127,7 +141,6 @@ require([
 			if(document.body.scrollHeight - document.body.scrollTop - document.documentElement.clientHeight < 100) {
 				listPage++;
 				getListData()
-				console.log('done');
 			}
 		}, 50);
 	})
@@ -136,37 +149,20 @@ require([
 	//添加购物车功能
 	var shoppingCartNumber = 0;
 	function addShoppingCartPrice(price) {
-		shoppingCartNumber += parseInt(price);
-		$('.shopping-number').html('￥' + shoppingCartNumber);
+		shoppingCartNumber += parseFloat(price);
+		$('.shopping-number').html('￥' + Math.round(shoppingCartNumber*100)/100);
 		$('.shopping-number').show();
 	}
+	//购物车点击功能
 	$('.list').on('click', function(e) {
-		/*if ($(e.target).attr('class') == 'buy-car') {
-			$(e.target).hide();
-			$(e.target).next().show();
-			addOrReduceShoppingCartNumber('add');
-		}
-
-		if ($(e.target).attr('changeNum') == 'reduce') {
-			//减掉数量
-			var next = parseInt(e.target.nextSibling.innerHTML)
-			if (next - 1 == 0) {
-				//数量少于一个的情况
-				addOrReduceShoppingCartNumber('reduce');
-				$(e.target).parent().hide();
-				$(e.target).parent().prev().show();
-			} else {
-				//大于一个，减一
-				e.target.nextSibling.innerHTML = next - 1;
-				addOrReduceShoppingCartNumber('reduce');
-			}
-		} else if ($(e.target).attr('changeNum') == 'add') {
-			//增加数量
-			e.target.previousSibling.innerHTML = parseInt(e.target.previousSibling.innerHTML) + 1;
-			addOrReduceShoppingCartNumber('add');
-		}*/
-		if($(e.target).attr('class') == 'buy-car') {
-			addShoppingCartPrice($(e.target).attr('price'));
+		if ($(e.target).attr('class') == 'buy-car') {
+			var code = $(e.target).attr('code');
+			ajax(shoppingCart, {uid: uid, code: code, cCode: addressCode}, function(data) {
+				data = JSON.parse(data);
+				if (data.resultcode == 1) {
+					addShoppingCartPrice($(e.target).attr('price'));
+				}
+			});
 		}
 	})
 });

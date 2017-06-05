@@ -18,7 +18,7 @@
 
 修改地址接口
 
-参数：uid，addressDetail(地址详情)
+参数：uid，addressDetail(地址详情),
 
 请求类型：get
 
@@ -92,7 +92,7 @@
 
 下单接口
 
-请求参数：uid，商品list，
+请求参数：uid，商品list，地址，电话（hpone），姓名
 
 请求类型：get
 

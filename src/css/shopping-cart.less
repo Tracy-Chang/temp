@@ -23,6 +23,16 @@ body{
 		vertical-align: middle;
 	}
 }
+.address-detail{
+	background-color: #fff;
+	font-size: 30px;
+	margin: 20px 0;
+	padding: 20px;
+	label{
+		margin: 10px 0;
+		display: inline-block;
+	}
+}
 .arrive{
 	background-color: #fff;
 	font-size: 30px;
@@ -75,24 +85,57 @@ body{
 			margin: 0 10px;
 			border-radius: 50%;
 			vertical-align: middle;
+			position: relative;
+			flex-shrink: 0;
+		}
+		.active:after{
+			content: '';
+			width: 10px;
+			height: 20px;
+			border-left: 3px solid #0bad0b;
+			border-top: 3px solid #0bad0b;
+			display: inline-block;
+			transform: rotateZ(-135deg);
+			position: absolute;
+			left: 12px;
+			top: 6px;
 		}
 		img{
 			width: 150px;
 			height: 150px;
-			margin: 0 20px;
+			margin: 0 15px;
+			flex-shrink: 0;
 		}
 		.info{
 			flex-grow: 1;
+			p{
+				margin: 10px 0;
+			}
 		}
 		.number{
-			width: 100px;
+			width: 200px;
+			flex-shrink: 0;
+			input{
+				border: 1px solid #aaa;/* px */
+				border-radius: 5px;
+				width: 70px;
+				text-align: center;
+				margin: 0 10px;
+				vertical-align: middle;
+			}
+			img{
+				width: 36px;
+				height: 36px;
+				margin: 0;
+				vertical-align: middle;
+			}
 		}
 	}
 }
 .commodity-info{
 	background-color: #fff;
 	font-size: 30px;
-	margin: 20px 0;
+	margin: 20px 0 220px;
 	li{
 		height: 80px;
 		line-height: 80px;
@@ -115,6 +158,7 @@ body{
 	background-color: #fff;
 	width: 100%;
 	border-bottom: 1px solid #ccc;/* px */
+	border-top: 1px solid #ccc;/* px */
 	font-size: 30px;
 	display: flex;
 	align-items: center;
@@ -131,6 +175,19 @@ body{
 			margin: 0 10px;
 			border-radius: 50%;
 			vertical-align: middle;
+			position: relative;
+		}
+		.active:after{
+			content: '';
+			width: 10px;
+			height: 20px;
+			border-left: 3px solid #0bad0b;
+			border-top: 3px solid #0bad0b;
+			display: inline-block;
+			transform: rotateZ(-135deg);
+			position: absolute;
+			left: 12px;
+			top: 6px;
 		}
 	}
 	li:nth-child(2){
