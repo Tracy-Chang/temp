@@ -43,7 +43,9 @@ define(['../../../node_modules/mockjs/dist/mock-min'],function(Mock){
 	Mock.mock(/orderUrl/,
 		{
 			"resultcode":1, //1成功 0失败
-			"result": [],
+			"result": {
+				"formId": "LS2017061571606757775"
+			},
 			"resultmsg":"获取成功"
 		}
 	);

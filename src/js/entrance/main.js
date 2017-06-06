@@ -3,8 +3,8 @@
  * author  作者
  */
 require([
-	'../libs/AceTemplate'/*,
-	'../mock-data/main'*/
+	'../libs/AceTemplate',
+	'../mock-data/main'
 	], function () {
 
 	//接口地址

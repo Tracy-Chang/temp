@@ -3,13 +3,14 @@
  * author  tracy
  */
 require([
-	'../libs/AceTemplate'/*,
-	'../mock-data/pay'*/
-	], function () {
+	'../modules/util',
+	'../libs/AceTemplate',
+	'../mock-data/pay'
+	], function (util) {
 
 	var formPort = 'formPort',
 		uid = '111',
-		formId = 'xxx',
+		formId = util.getNameInStr(location.search, 'formId'),
 		arriveTime = 2,
 		totalPrice = 0;
 

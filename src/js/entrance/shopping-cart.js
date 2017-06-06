@@ -3,8 +3,8 @@
  * author  作者
  */
 require([
-	'../libs/AceTemplate'/*,
-	'../mock-data/shopping-cart'*/
+	'../libs/AceTemplate',
+	'../mock-data/shopping-cart'
 	], function () {
 
 	//接口URL
@@ -212,15 +212,17 @@ require([
 			alert('请选择购买商品');
 			return
 		}
-		var data = commodityObj;
+		var data = {};
 		data.uid = uid;
 		data.name = nameData;
 		data.phone = phoneData;
 		data.address = addressData;
+		data.list = JSON.stringify(commodityObj);
+		debugger;
 		ajax('orderUrl', data, function(data) {
 			data = JSON.parse(data);
 			if (data.resultcode == '1') {
-				location.href = './pay.html';
+				location.href = './pay.html?formId=' + data.result.formId;
 			}
 		});
 	}

@@ -3,8 +3,8 @@
  * author  tracy
  */
 require([
-	'../libs/AceTemplate'/*,
-	'../mock-data/my'*/
+	'../libs/AceTemplate',
+	'../mock-data/my'
 	], function () {
 
 	//ajax接口
