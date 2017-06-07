@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>订单</title>
+	<!--=include ./common/meta.html-->
+	<link rel="stylesheet" href="../static/css/agentList.css">
+</head>
+<body>
+	<!-- title -->
+	<div class="title">待送达订单</div>
+	<!-- list -->
+	<ul class="list"></ul>
+	<script id="listTemp" type="text/template">
+		var data = this.result.list;
+		for (var i = 0; i < data.length; i++) {
+			<li>
+				<img src="#{data[i].url}">
+				<div class="info">
+					<p>#{data[i].detail}</p>
+					<p>市场价：#{data[i].marPrice}元</p>
+					<p>会员价：#{data[i].price}元</p>
+				</div>
+				<img code="#{data[i].code}" price="#{data[i].price}" class="buy-car" src="../static/images/shopping-cart.png">
+				<div class="number">
+					<i changeNum="reduce"></i><span>1</span><i changeNum="add"></i>
+				</div>
+			</li>
+		}
+	</script>
+	<!--=include ./common/foot.html-->
+	<script charset="utf-8" src="../static/js/agentList.js"></script>
+</body>
+</html>
