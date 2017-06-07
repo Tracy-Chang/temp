@@ -8,9 +8,9 @@ require([
 	], function () {
 
 	//接口地址
-	var navUrl = '//www.earthcenter.com.cn:8081/lstype/query',
-		listUrl = '//www.earthcenter.com.cn:8081/ls/query',
-		addressUrl = '//www.earthcenter.com.cn:8081/community/query',
+	var navUrl = '//localhost:8080/lstype/query',
+		listUrl = '//localhost:8080/ls/query',
+		addressUrl = '//localhost:8080/community/query',
 		shoppingCart = '//localhost:8080/shopping/add';
 
 	var uid = '111';

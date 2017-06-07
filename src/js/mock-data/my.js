@@ -4,7 +4,7 @@
  */
 define(['../../../node_modules/mockjs/dist/mock-min'],function(Mock){
 	//订单
-	Mock.mock('form',
+	Mock.mock(/http:\/\/localhost:8080\/order\/queryU/,
 		{
 			"resultcode":1, //1成功 0失败
 			"result|1-3": [

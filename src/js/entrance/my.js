@@ -8,7 +8,7 @@ require([
 	], function () {
 
 	//ajax接口
-	var formDetail = 'form',
+	var formDetail = 'http://localhost:8080/order/queryU',
 		addressDetail = 'http://localhost:8080/address/query',
 		delFormPort = 'delForm',
 		delAddressPort = 'http://localhost:8080/address/delete';

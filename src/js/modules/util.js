@@ -11,7 +11,6 @@ define(function(){
 		 */
 		getNameInStr: function(str, name){
 			var reg = new RegExp("(^|[?]|&|\")" + name + "=([^&]*)(&|$)", "i"); 
-			//var reg = new RegExp("?" + name + "=[\w](&|$)", "i"); 
 			var r = str.match(reg); 
 			if (r != null) return unescape(r[2]); return ''; 
 		},

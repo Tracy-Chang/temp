@@ -8,7 +8,7 @@ require([
 	'../mock-data/pay'
 	], function (util) {
 
-	var formPort = 'formPort',
+	var formPort = 'http://localhost:8080/order/query',
 		uid = '111',
 		formId = util.getNameInStr(location.search, 'formId'),
 		arriveTime = 2,

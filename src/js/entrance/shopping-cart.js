@@ -10,7 +10,7 @@ require([
 	//接口URL
 	var shoppingCart = 'http://localhost:8080/shopping/query',
 		address = 'http://localhost:8080/address/query',
-		orderUrl = 'orderUrl';//下订单url
+		orderUrl = 'http://localhost:8080/order/add';//下订单url
 	var uid = '111';
 
 	var commodityObj = {}; //下单商品的数量键值对-用于订单提交
@@ -218,8 +218,7 @@ require([
 		data.phone = phoneData;
 		data.address = addressData;
 		data.list = JSON.stringify(commodityObj);
-		debugger;
-		ajax('orderUrl', data, function(data) {
+		ajax(orderUrl, data, function(data) {
 			data = JSON.parse(data);
 			if (data.resultcode == '1') {
 				location.href = './pay.html?formId=' + data.result.formId;

@@ -40,7 +40,7 @@ define(['../../../node_modules/mockjs/dist/mock-min'],function(Mock){
 		}
 	);
 	//提交订单
-	Mock.mock(/orderUrl/,
+	Mock.mock(/http:\/\/localhost:8080\/order\/add/,
 		{
 			"resultcode":1, //1成功 0失败
 			"result": {

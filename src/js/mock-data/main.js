@@ -4,7 +4,7 @@
  */
 define(['../../../node_modules/mockjs/dist/mock-min'],function(Mock){
 	//地址
-	Mock.mock(/\/\/www.earthcenter.com.cn:8081\/community\/query/,
+	Mock.mock(/\/\/localhost:8080\/community\/query/,
 		{
 			"resultcode":1, //1成功 0失败
 			"result|2-5": [
@@ -23,7 +23,7 @@ define(['../../../node_modules/mockjs/dist/mock-min'],function(Mock){
 		}
 	);
 	//分类
-	Mock.mock(/\/\/www.earthcenter.com.cn:8081\/lstype\/query/,
+	Mock.mock(/\/\/localhost:8080\/lstype\/query/,
 		{
 			"resultcode":1,
 			"result": [
@@ -47,7 +47,7 @@ define(['../../../node_modules/mockjs/dist/mock-min'],function(Mock){
 		}
 	);
 	//list
-	Mock.mock(/\/\/www.earthcenter.com.cn:8081\/ls\/query/,
+	Mock.mock(/\/\/localhost:8080\/ls\/query/,
 		{
 			"result": {
 				"firstPage": true,
