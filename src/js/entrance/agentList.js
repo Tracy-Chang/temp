@@ -3,13 +3,15 @@
  * author  作者
  */
 require([
-	'../libs/AceTemplate',
-	'../mock-data/agentList'
-	], function () {
+	'../modules/util',
+	'../libs/AceTemplate'/*,
+	'../mock-data/agentList'*/
+	], function (util) {
 
 	//接口地址
 	var listUrl = '//www.earthcenter.com.cn:8081/ls/query',
-		uid = '111',
+		arriveUrl = 'http://localhost:8080/order/to',
+		uid =  util.getCookie('uId') || '',
 		loadingImg = 'http://localhost/static/images/loading.gif',
 		listPage = 1,
 		classfiyCode = '',
@@ -66,5 +68,22 @@ require([
 				getListData()
 			}
 		}, 50);
+	})
+
+
+	//订单已送达逻辑
+	$('.list').on('click', function(e) {
+		if (e.target.nodeName.toLowerCase() == 'button') {
+			var formId = $(e.target).attr('formId');
+			ajax(arriveUrl, {uid: uid, formId: formId}, function(data) {
+				data = JSON.parse(data);
+				if (data.resultcode == '1') {
+					$(e.target).addClass('notArrive');
+				} else if (data.resultcode == '0') {
+					alert(data.resultmsg)
+				}
+			});
+			e.preventDefault();
+		}
 	})
 });

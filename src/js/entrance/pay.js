@@ -4,12 +4,12 @@
  */
 require([
 	'../modules/util',
-	'../libs/AceTemplate',
-	'../mock-data/pay'
+	'../libs/AceTemplate'/*,
+	'../mock-data/pay'*/
 	], function (util) {
 
 	var formPort = 'http://localhost:8080/order/query',
-		uid = '111',
+		uid = util.getCookie('uId') || '';
 		formId = util.getNameInStr(location.search, 'formId'),
 		arriveTime = 2,
 		totalPrice = 0;

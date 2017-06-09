@@ -1,0 +1,94 @@
+/**
+ * 需求主题  0bad0b
+ * author tracy
+ */
+@import url(./base);
+
+body{
+	background-color: #f0f0f0;
+	font-size: 24px;
+}
+.title{
+	font-size: 30px;
+	height: 80px;
+	text-align: center;
+	vertical-align: middle;
+	line-height: 80px;
+	background-color: #0bad0b;
+	margin-bottom: 20px;
+	color: #fff;
+	position: relative;
+}
+//隐藏dom
+.form-detail{
+	width: 100%;
+	background-color: #f0f0f0;
+	font-size: 30px;
+	.title{
+		width: 100%;
+		background-color: #fff;
+		height: 80px;
+		margin-bottom: 20px;
+		text-align: center;
+		line-height: 80px;
+		overflow: hidden;
+		position: fixed;
+		top: 0;
+		i{
+			width: 20px;
+			height: 20px;
+			border-top: 2px solid #333;
+			border-left: 2px solid #333;
+			display: inline-block;
+			transform: rotateZ(-45deg);
+			float: left;
+			margin: 31px 30px;
+		}
+	}
+	dl{
+		background-color: #fff;
+		border-bottom: 1px solid #ccc;
+		overflow: hidden;
+		dt{
+			margin: 20px 40px;
+		}
+		dd{
+			display: flex;
+			align-items: center;
+			border: 1px solid #ccc;
+			margin: 10px 40px;
+			img:nth-child(1){
+				width: 200px;
+				height: 200px;
+				margin: 0 20px;
+				flex-grow: 0;
+				flex-shrink: 0;
+			}
+			div:nth-child(2){
+				flex-grow: 1;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				p{
+					margin: 20px 0;
+				}
+			}
+			div:nth-child(3){
+				width: 100px;
+				text-align: center;
+				color: #0bad0b;
+				flex-grow: 0;
+				flex-shrink: 0;
+			}
+		}
+		dd:last-child{
+			border: none;
+			margin: 20px 40px;
+			display: block;
+			p{
+				margin: 10px 0;
+				font-size: 30px;
+			}
+		}
+	}
+}

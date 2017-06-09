@@ -3,9 +3,10 @@
  * author  作者
  */
 require([
-	'../libs/AceTemplate',
-	'../mock-data/main'
-	], function () {
+	'../modules/util',
+	'../libs/AceTemplate'/*,
+	'../mock-data/main'*/
+	], function (util) {
 
 	//接口地址
 	var navUrl = '//localhost:8080/lstype/query',
@@ -13,17 +14,16 @@ require([
 		addressUrl = '//localhost:8080/community/query',
 		shoppingCart = '//localhost:8080/shopping/add';
 
-	var uid = '111';
-	var defaultAddress = '新龙城';
+	var uid = util.getCookie('uId') || '';
+	var defaultAddress = util.getCookie('communityName');
 
 	//url
 	var loadingImg = 'http://localhost/static/images/loading.gif';
 
 	//各个接口的唯一标识
-	var addressCode = localStorage.getItem('addressCode') || '',  //地址code
+	var addressCode = util.getCookie('community') || '',  //地址code
 		classfiyCode = 'qb',  //分类code
-		listPage = 1,  //请求页数
-		commodityCode = false || ''; //商品code
+		listPage = 1;  //请求页数
 
 	function ajax(url, data, callback) {
 		$.ajax({
@@ -123,7 +123,7 @@ require([
 			$('.address').html(e.target.innerHTML);
 			sessionStorage.setItem('defaultAddress', e.target.innerHTML);
 			addressCode = $(e.target).attr('code');
-			localStorage.setItem('addressCode', addressCode);
+			util.getCookie('community', addressCode);
 			getNavData();
 			getListData();
 		}
@@ -147,10 +147,10 @@ require([
 
 
 	//添加购物车功能
-	var shoppingCartNumber = 0;
+	var shoppingCartPrice = 0;
 	function addShoppingCartPrice(price) {
-		shoppingCartNumber += parseFloat(price);
-		$('.shopping-number').html('￥' + Math.round(shoppingCartNumber*100)/100);
+		shoppingCartPrice += parseFloat(price);
+		$('.shopping-number').html('￥' + Math.round(shoppingCartPrice*100)/100);
 		$('.shopping-number').show();
 	}
 	//购物车点击功能

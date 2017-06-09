@@ -27,7 +27,7 @@ define(['../../../node_modules/mockjs/dist/mock-min'],function(Mock){
 				"list|2-4": [
 				  	{
 					    "code|+1": 1,
-					    "count": "12",
+					    "count|1-12": 12,
 					    "detail|1-2": "百事可乐330ml听装",
 					    "id": "8",
 					    "price": "1.80",

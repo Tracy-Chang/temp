@@ -7,54 +7,17 @@ define(['../../../node_modules/mockjs/dist/mock-min'],function(Mock){
 	Mock.mock(/\/\/www.earthcenter.com.cn:8081\/ls\/query/,
 		{
 			"result": {
-				"firstPage": true,
-				"lastPage": false,
-				"list|2": [
-				  {
-				    "code": "Lyltsbss001",
-				    "count": "12",
-				    "detail": "百事可乐330ml听装",
-				    "id": "8",
-				    "marPrice": "2.00",
-				    "price": "1.80",
-				    "url": "../static/images/commodity.jpg"
-				  },
-				  {
-				    "code": "Lyltsbss006",
-				    "count": "12",
-				    "detail": "百事七喜330ml听装",
-				    "id": "13",
-				    "marPrice": "2.00",
-				    "price": "1.80",
-				    "url": "../static/images/commodity.jpg"
-				  },
-				  {
-				    "code": "Lyltsbss102",
-				    "count": "12",
-				    "detail": "百事可乐600ml",
-				    "id": "9",
-				    "marPrice": "3.00",
-				    "price": "2.50",
-				    "url": "../static/images/commodity.jpg"
-				  },
-				  {
-				    "code": "Lyltsbss104",
-				    "count": "12",
-				    "detail": "百事美年达桃味600ml",
-				    "id": "11",
-				    "marPrice": "3.00",
-				    "price": "2.50",
-				    "url": "../static/images/commodity.jpg"
-				  },
-				  {
-				    "code": "Lyltsbss105",
-				    "count": "12",
-				    "detail": "百事美年达橙味600ml",
-				    "id": "12",
-				    "marPrice": "3.00",
-				    "price": "2.50",
-				    "url": "../static/images/commodity.jpg"
-				  }
+				"list|0-20": [
+					{
+						"time": Mock.mock('@datetime("yyyy/MM/dd HH:mm")'),
+						"formUrl": "./agentDetail.html",
+						"imgUrl": "../static/images/default.jpg",
+						"name": "李元霸", 
+						"phone": "10086",
+						"address": "新龙城36d三单元",
+						"formId": "111",
+						"arrive|1": true
+					}
 				],
 				"pageNumber": 1,
 				"pageSize": 5,
@@ -63,6 +26,13 @@ define(['../../../node_modules/mockjs/dist/mock-min'],function(Mock){
 			},
 			"resultcode": "1",
 			"resultmsg": "查询成功"
+		}
+	);
+	Mock.mock(/http:\/\/localhost:8080\/order\/to/,
+		{
+			"resultcode":1, //1成功 0失败
+			"result": [],
+			"resultmsg":"获取成功"
 		}
 	);
 });

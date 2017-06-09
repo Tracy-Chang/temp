@@ -3,15 +3,16 @@
  * author  作者
  */
 require([
-	'../libs/AceTemplate',
-	'../mock-data/shopping-cart'
-	], function () {
+	'../modules/util',
+	'../libs/AceTemplate'/*,
+	'../mock-data/shopping-cart'*/
+	], function (util) {
 
 	//接口URL
 	var shoppingCart = 'http://localhost:8080/shopping/query',
 		address = 'http://localhost:8080/address/query',
 		orderUrl = 'http://localhost:8080/order/add';//下订单url
-	var uid = '111';
+	var uid = util.getCookie('uId') || '';
 
 	var commodityObj = {}; //下单商品的数量键值对-用于订单提交
 
@@ -58,10 +59,16 @@ require([
 
 	ajax(address, {uid: uid}, setAddress);
 
-	$('.address-detail>input').on('input', function() {
-		addressData = this.value;
-		nameData = this.value;
-		phoneData = this.value;
+	$('.address-detail>input').on('input', function(e) {
+		if($(e.target).attr('name') == 'name') {
+			nameData = this.value;
+		}
+		if($(e.target).attr('name') == 'phone') {
+			phoneData = this.value;
+		}
+		if($(e.target).attr('name') == 'address') {
+			addressData = this.value;
+		}
 	});
 
 	//购物车逻辑
@@ -93,6 +100,9 @@ require([
 			$('.commodity-number').on('blur', function() {
 				if (this.value == '') {
 					this.value = value;
+				} else if (this.value >= $(this).attr('count')) {
+					//填入的值不能大于商品数量
+					this.value = $(this).attr('count');
 				}
 			});
 			$('.arrive').html(data.result.time + '小时后送达');
@@ -131,6 +141,11 @@ require([
 			}
 		}
 		if ($(e.target).attr('do') == 'add') {
+			//判断商品的数量是否充足
+			if (number >= $(e.target).attr('count')) {
+				alert('商品数量不足');
+				return
+			}
 			number += 1; 
 			inputBabel.value = number;
 			commodityNumber[code] = number;
@@ -222,6 +237,8 @@ require([
 			data = JSON.parse(data);
 			if (data.resultcode == '1') {
 				location.href = './pay.html?formId=' + data.result.formId;
+			} else if (data.resultcode == '0') {
+				alert(data.resultmsg);
 			}
 		});
 	}

@@ -10,8 +10,8 @@
 	<!-- 地址 -->
 	<div class="address"><img src="../static/images/my-dizhi.png"><span>地址</span></div>
 	<div class="address-detail">
-		<label>姓名：</label><input type="text" name="address" value="" placeholder="请输入姓名"></br>
-		<label>手机：</label><input type="text" name="address" value="" placeholder="请输入手机号"></br>
+		<label>姓名：</label><input type="text" name="name" value="" placeholder="请输入姓名"></br>
+		<label>手机：</label><input type="text" name="phone" value="" placeholder="请输入手机号"></br>
 		<label>地址：</label><input type="text" name="address" value="" placeholder="请输入收货地址"></br>
 	</div>
 	<!-- 送达时间 -->
@@ -46,11 +46,12 @@
 				<div class="info">
 					<p>#{list[i].detail}</p>
 					<p>#{list[i].price}元</p>
+					<p>剩余数量：#{list[i].count}</p>
 				</div>
 				<div class="number">
 					<img do="reduce" src="../static/images/reduce-img.png">
-					<input class="commodity-number" type="text" name="#{list[i].code}" value="1">
-					<img do="add" src="../static/images/add-img.png">
+					<input class="commodity-number"  count="#{list[i].count}" type="text" name="#{list[i].code}" value="1">
+					<img do="add" count="#{list[i].count}" src="../static/images/add-img.png">
 				</div>
 			</li>
 		}

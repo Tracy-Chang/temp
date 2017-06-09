@@ -15,16 +15,20 @@
 		var data = this.result.list;
 		for (var i = 0; i < data.length; i++) {
 			<li>
-				<img src="#{data[i].url}">
-				<div class="info">
-					<p>#{data[i].detail}</p>
-					<p>市场价：#{data[i].marPrice}元</p>
-					<p>会员价：#{data[i].price}元</p>
-				</div>
-				<img code="#{data[i].code}" price="#{data[i].price}" class="buy-car" src="../static/images/shopping-cart.png">
-				<div class="number">
-					<i changeNum="reduce"></i><span>1</span><i changeNum="add"></i>
-				</div>
+				<a href="#{data[i].formUrl}">
+					<img src="#{data[i].imgUrl}">
+					<div class="info">
+						<p>收货人：#{data[i].name}</p>
+						<p>电话：#{data[i].phone}</p>
+						<p>地址：#{data[i].address}</p>
+						<p>时间：#{data[i].time}</p>
+					</div>
+					if (data[i].arrive) {
+						<button formId="#{data[i].formId}" class="notArrive">送达</button>
+					} else {
+						<button formId="#{data[i].formId}" class="arrive">送达</button>
+					}
+				</a>
 			</li>
 		}
 	</script>

@@ -3,9 +3,10 @@
  * author  tracy
  */
 require([
-	'../libs/AceTemplate',
-	'../mock-data/my'
-	], function () {
+	'../modules/util',
+	'../libs/AceTemplate'/*,
+	'../mock-data/my'*/
+	], function (util) {
 
 	//ajax接口
 	var formDetail = 'http://localhost:8080/order/queryU',
@@ -26,9 +27,9 @@ require([
 	}
 
 	//用户状态逻辑
-	var userImg = '../static/images/commodity.jpg' || '',
-		userName = '翠西',
-		uid = '1111111';
+	var userImg = util.getCookie('niceName') || '../static/images/default.jpg' || '',
+		userName = util.getCookie('headimgurl') || '',
+		uid = util.getCookie('uId') || '';
 
 	if (userImg) {
 		var userHtml = '<img src="' + userImg + '"/>' + '<p>' + userName + '</p>';

@@ -1,0 +1,51 @@
+代理人相关接口
+
+
+订单信息接口	http://localhost:8080/order/queryC
+
+参数： uid
+
+请求类型： get
+
+{
+	"resultcode":1, //1成功 0失败
+	"result": [
+		{
+			"formId": "111",
+			"time": "20170520 12:20", //订单时间
+			"list": [  //订单物品list
+				{
+					"url": "xxx",
+					"name": "可口可乐",
+					"price": "1.80",
+					"number": "3"
+				}
+			],
+			"status": 1, //1待支付、2已支付、3已送达、4已签收
+			"totalPrice": 30.00
+			
+			"community" : "智学苑",
+			"name": "李元霸", 
+			"phone": "10086",
+			"address": "新龙城36d三单元",
+		}
+	],
+	"resultmsg":"获取成功"
+}
+
+
+
+
+
+送达接口		http://localhost:8080/order/to
+
+参数，uid，订单formId
+
+请求类型：get
+
+返回数据
+{
+	"resultcode":1, //1成功 0失败
+	"result": [],
+	"resultmsg":"获取成功"
+}
