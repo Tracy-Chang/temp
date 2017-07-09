@@ -1,0 +1,76 @@
+我的相关接口
+
+
+订单信息接口
+
+参数： uid
+
+请求类型： get
+
+{
+	"resultcode":1, //1成功 0失败
+	"result": [
+		{
+			"formId": "111",
+			"time": "20170520 12:20", //订单时间
+			"list": [  //订单物品list
+				{
+					"url": "xxx",
+					"name": "可口可乐",
+					"price": "1.80",
+					"number": "3"
+				}
+			],
+			"pay": true, //支付与否
+			"confirm": true, //签收
+			"totalPrice": 30
+		}
+	],
+	"resultmsg":"获取成功"
+}
+
+我的地址接口
+
+参数：uid
+
+请求类型：get
+
+{
+	"resultcode":1, //1成功 0失败
+	"result|1-5": [
+		{
+			"id": "1",
+			"address": "地址", //地址
+			"phone": "10086",
+			"name": "翠西"
+		}
+	],
+	"resultmsg":"获取成功"
+}
+
+
+删除地址接口
+
+参数，uid，地址id
+
+请求类型：get
+
+返回数据
+{
+	"resultcode":1, //1成功 0失败
+	"result": [],
+	"resultmsg":"获取成功"
+}
+
+删除订单接口
+
+参数，uid，订单uid
+
+请求类型：get
+
+返回数据
+{
+	"resultcode":1, //1成功 0失败
+	"result": [],
+	"resultmsg":"获取成功"
+}

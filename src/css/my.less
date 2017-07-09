@@ -1,0 +1,266 @@
+/**
+ * 需求主题 #0bad0b
+ * author tracy
+ */
+@import url(./base);
+@import url(./modules/bottom_nav);
+@import url(./modules/Alert);
+
+body{
+	background-color: #f0f0f0;
+	font-size: 24px;
+}
+.user{
+	font-size: 30px;
+	height: 430px;
+	text-align: center;
+	background-color: #fff;
+	line-height: 430px;
+	div{
+		line-height: normal;
+		img{
+			width: 200px;
+			height: 200px;
+			display: inline-block;
+			margin-top: 60px;
+			border-radius: 50%;
+		}
+		p{
+			height: 40px;
+			font-size: 30px;
+		}
+	}
+}
+.form,.address,.service,.about{
+	background-color: #fff;
+	font-size: 30px;
+	height: 100px;
+	border-top: 1px solid #ccc;/* px */
+	line-height: 100px;
+	overflow: hidden;
+	padding-left: 70px;
+	position: relative;
+	i{
+		border-top: 2px solid #666;/* px */
+		border-right:  2px solid #666;/* px */
+		width: 10px;
+		height: 10px;
+		transform: rotateZ(45deg);
+		display: inline-block;
+		float: right;
+		margin: 48px;
+	}
+}
+.form{
+	margin-top: 20px;
+}
+.form:before{
+    content: "";
+    background-image: url(../images/my-dingdan.png);
+    width: 40px;
+    height: 40px;
+    background-size: 100% 100%;
+    position: absolute;
+    top: 30px;
+    left: 18px;
+    background-repeat: no-repeat;
+}
+.address:before{
+    content: "";
+    background-image: url(../images/my-dizhi.png);
+    width: 40px;
+    height: 40px;
+    background-size: 100% 100%;
+    position: absolute;
+    top: 30px;
+    left: 18px;
+    background-repeat: no-repeat;
+}
+.service:before{
+    content: "";
+    background-image: url(../images/my-kefu.png);
+    width: 40px;
+    height: 40px;
+    background-size: 100% 100%;
+    position: absolute;
+    top: 30px;
+    left: 18px;
+    background-repeat: no-repeat;
+}
+.about:before{
+    content: "";
+    background-image: url(../images/my-dingdan.png);
+    width: 40px;
+    height: 40px;
+    background-size: 100% 100%;
+    position: absolute;
+    top: 30px;
+    left: 18px;
+    background-repeat: no-repeat;	
+}
+
+//隐藏dom
+.form-detail{
+	width: 100%;
+	height: 100vh;
+	position: fixed;
+	top: 0;
+	background-color: #f0f0f0;
+	font-size: 30px;
+	overflow: scroll;
+	display: none;
+	.title{
+		width: 100%;
+		background-color: #fff;
+		height: 80px;
+		margin-bottom: 20px;
+		text-align: center;
+		line-height: 80px;
+		overflow: hidden;
+		position: fixed;
+		top: 0;
+		i{
+			width: 20px;
+			height: 20px;
+			border-top: 2px solid #333;
+			border-left: 2px solid #333;
+			display: inline-block;
+			transform: rotateZ(-45deg);
+			float: left;
+			margin: 31px 30px;
+			position: absolute;
+    		left: 0;
+		}
+	}
+	dl{
+		background-color: #fff;
+		border-bottom: 1px solid #ccc;
+		overflow: hidden;
+		dt{
+			margin: 20px 40px;
+			overflow: hidden;
+			p{
+				float: right;
+				margin: 0;
+				span{
+					color: #333;
+				}
+			}
+		}
+		dd{
+			display: flex;
+			align-items: center;
+			border: 1px solid #ccc;
+			margin: 10px 40px;
+			img:nth-child(1){
+				width: 200px;
+				height: 200px;
+				margin: 0 20px;
+				flex-grow: 0;
+				flex-shrink: 0;
+			}
+			div:nth-child(2){
+				flex-grow: 1;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				p{
+					margin: 20px 0;
+				}
+			}
+			div:nth-child(3){
+				width: 100px;
+				text-align: center;
+				color: #0bad0b;
+				flex-grow: 0;
+				flex-shrink: 0;
+			}
+		}
+		p{
+			margin: 20px 40px;
+			span{
+				color: #0bad0b;
+			}
+		}
+		dd:last-child{
+			border: none;
+			span{
+				color: #fff;
+				background-color: #0bad0b;
+				margin: 0px 20px 20px 0;
+				padding: 10px 20px;
+			}
+			.no-pay{
+				background-color: #ccc;
+			}
+		}
+	}
+	dl:nth-child(2){
+		margin-top: 110px;
+	}
+	.no-data{
+		text-align: center;
+		font-size: 30px;
+	    margin-top: 100px;
+    	height: 100px;
+    	background-color: #fff;
+    	line-height: 100px;
+	}
+}
+.address-detail{
+	width: 100%;
+	height: 100vh;
+	position: fixed;
+	top: 0;
+	background-color: #f0f0f0;
+	font-size: 30px;
+	display: none;
+	.address-title{
+		background-color: #fff;
+		height: 80px;
+		margin-bottom: 20px;
+		text-align: center;
+		line-height: 80px;
+		overflow: hidden;
+		i{
+			width: 20px;
+			height: 20px;
+			border-top: 2px solid #333;
+			border-left: 2px solid #333;
+			display: inline-block;
+			transform: rotateZ(-45deg);
+			float: left;
+			margin: 31px 30px;
+			position: absolute;
+    		left: 0;
+		}
+	}
+	li{
+		background-color: #fff;
+		border-bottom: 1px solid #ccc;
+		overflow: hidden;
+		div{
+			margin: 20px 30px;
+		}
+		.edit{
+			float: right;
+			line-height: 120px;
+			button{
+				display: block;
+				padding: 10px;
+				background-color: #fff;
+				border: 1px solid #aaa;/* px */
+			}
+			button:nth-child(2){
+				margin-top: 20px;
+			}
+		}
+	}
+	.no-data{
+		text-align: center;
+		font-size: 30px;
+    	height: 100px;
+    	background-color: #fff;
+    	line-height: 100px;
+	}
+}

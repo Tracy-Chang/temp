@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>订单</title>
+	<!--=include ./common/meta.html-->
+	<link rel="stylesheet" href="../static/css/agentList.css">
+</head>
+<body>
+	<!-- title -->
+	<div class="title">待送达订单</div>
+	<!-- list -->
+	<ul class="list"></ul>
+	<script id="listTemp" type="text/template">
+		var data = this.result.list;
+		for (var i = 0; i < data.length; i++) {
+			<li>
+				<a href="#{data[i].formUrl}?formId=#{data[i].formId}">
+					<img src="#{data[i].imgUrl}">
+					<div class="info">
+						<p>收货人：#{data[i].name}</p>
+						<p>电话：#{data[i].phone}</p>
+						<p>地址：#{data[i].address}</p>
+						<p>时间：#{data[i].time}</p>
+					</div>
+					if (data[i].arrive) {
+						<button formId="#{data[i].formId}" class="notArrive">已送达</button>
+					} else {
+						<button formId="#{data[i].formId}" class="arrive">送达</button>
+					}
+				</a>
+			</li>
+		}
+	</script>
+	<!--=include ./common/foot.html-->
+	<script charset="utf-8" src="../static/js/agentList.js"></script>
+</body>
+</html>

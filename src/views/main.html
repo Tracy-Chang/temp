@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>首页</title>
+	<!--=include ./common/meta.html-->
+	<link rel="stylesheet" href="../static/css/main.css">
+</head>
+<body>
+	<!-- address -->
+	<div class="address">请选择地址</div>
+	<!-- 具体地址 -->
+	<div class="select-address"></div>
+	<!-- nav -->
+	<ul class="nav"></ul>
+	<!-- list -->
+	<ul class="list"></ul>
+	<!-- bottom -->
+	<ul class="bottom-nav">
+		<li><a href="./main.html"><img src="../static/images/index-active.png"><span>首页</span></a></li>
+		<li><a href="./shopping-cart.html"><img src="../static/images/buy-car.png">购物车<span class="shopping-number">2</span></a></li>
+		<li><a href="./my.html"><img src="../static/images/my.png">我的</a></li>
+	</ul>
+
+	<!-- template -->
+	<script id="navTemp" type="text/template">
+		var data = this.result;
+		for (var i = 0; i < data.length; i++) {
+			if (i == 0) {
+				<li class="active" code="#{data[i].code}">#{data[i].name}</li>
+			} else {
+				<li code="#{data[i].code}">#{data[i].name}</li>
+			}
+		}
+	</script>
+	<script id="listTemp" type="text/template">
+		var data = this.result.list;
+		for (var i = 0; i < data.length; i++) {
+			<li>
+				<img src="#{data[i].url}">
+				<div class="info">
+					<p>#{data[i].detail}</p>
+					<p>原价：#{data[i].marPrice}元</p>
+					<p>优惠价：#{data[i].price}元</p>
+				</div>
+				<img code="#{data[i].code}" price="#{data[i].price}" class="buy-car" src="../static/images/shopping-cart.png">
+				<div class="number">
+					<i changeNum="reduce"></i><span>1</span><i changeNum="add"></i>
+				</div>
+			</li>
+		}
+	</script>
+	<!--=include ./common/foot.html-->
+	<script charset="utf-8" src="../static/js/main.js?v=2"></script>
+</body>
+</html>

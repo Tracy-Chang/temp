@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>支付</title>
+	<!--=include ./common/meta.html-->
+	<link rel="stylesheet" href="../static/css/pay.css">
+</head>
+<body> 
+	<!-- top-detail -->
+	<div class="top"><a href="./shopping-cart.html"><i></i></a>确认订单</div>
+	<!-- 送达时间 -->
+	<div class="arrive">40分钟内送达</div>
+	<!-- 地址 -->
+	<div class="address"><img src="../static/images/my-dizhi.png"><span>地址</span></div>
+	<!-- 商品信息 -->
+	<div class="commodity-info"></div>
+	<!-- 总价格 -->
+	<div class="pay">
+		<span>付款</span>
+		<span class="total-price">￥20元</span>
+		<span id="pay">支付</span>
+	</div>
+	<!-- 商品template -->
+	<script id="commodityTemplate" type="text/template">
+		var data = this.result;
+		var list = this.result.list;
+		<!-- user-info -->
+		<div class="address-detail">
+			<p>姓名：#{data.name}</p>
+			<p>手机：#{data.phone}</p>
+			<p>地址：#{data.address}</p>
+			<p>备注：#{data.remark}</p>
+		</div>
+		<!-- 商品 -->
+		<ul class="commodity">
+		for (var i = 0; i < list.length; i++) {
+			<li>
+				<img src="#{list[i].url}">
+				<div class="info">
+					<p>#{list[i].name}</p>
+					<p>#{list[i].price}元</p>
+				</div>
+				<div class="number">x#{list[i].number}</div>
+			</li>
+		}
+		</ul>
+	</script>
+	<!--=include ./common/foot.html-->
+	<script charset="utf-8" src="../static/js/pay.js"></script>
+</body>
+</html>

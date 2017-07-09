@@ -1,0 +1,70 @@
+/**
+ * 需求主题  0bad0b
+ * author tracy
+ */
+@import url(./base);
+@import url(./modules/Alert);
+
+body{
+	background-color: #f0f0f0;
+	font-size: 24px;
+}
+.title{
+	font-size: 30px;
+	height: 80px;
+	text-align: center;
+	vertical-align: middle;
+	line-height: 80px;
+	background-color: #0bad0b;
+	margin-bottom: 20px;
+	color: #fff;
+	position: relative;
+}
+.list{
+	margin: 20px 0 120px;
+	background-color: #fff;
+	font-size: 30px;
+	a{
+		min-height: 200px;
+		display: flex;
+		align-items: center;
+		border-bottom: 1px solid #bbb;/* px */
+		img{
+			width: 150px;
+			height: 150px;
+			margin: 5px;
+			flex-grow: 0;
+			margin: 0 20px;
+		}
+		.info{
+			flex: 1;
+			p{
+				font-size: 30px;
+				color: #333;
+				margin: 10px 0;
+			}
+		}
+		button{
+			flex-grow: 0;
+			width: 125px;
+			height: 50px;
+			text-align: center;
+			margin-right: 20px;
+			background-color: #0bad0b;
+			color: #fff;
+		}
+		.notArrive{
+			background-color: #aaa;
+		}
+		.no-data{
+			text-align: center;
+			margin: 20px auto;
+		}
+	}
+	.loading{
+		height: 70px;
+		img{
+			margin: 0 auto;
+		}
+	}
+}

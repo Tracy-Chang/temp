@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>我的</title>
+	<!--=include ./common/meta.html-->
+	<link rel="stylesheet" href="../static/css/my.css">
+</head>
+<body>
+	<!-- 用户信息 -->
+	<div class="user"><div></div></div>
+	<!-- 订单列表 -->
+	<div class="form">我的订单<i></i></div>
+	<!-- 地址列表 -->
+	<div class="address">我的地址<i></i></div>
+	<!-- 客服列表 -->
+	<a href="./call-us.html"><div class="service">联系客服<i></i></div></a>
+	<!-- 关于 -->
+	<a href="./about.html"><div class="about">关于<i></i></div></a>
+	<!-- 底部浮层 -->
+	<ul class="bottom-nav">
+		<li><a href="./main.html"><img src="../static/images/index.png"><span>首页</span></a></li>
+		<li><a href="./shopping-cart.html"><img src="../static/images/buy-car.png">购物车</a></li>
+		<li><a href="./my.html"><img src="../static/images/my-active.png">我的</a></li>
+	</ul>
+	<!-- 我的表单 -->
+	<div class="form-detail">
+		<div class="title"><i id="form_hidden"></i>我的订单</div>
+	</div>
+	<!-- 我的地址 -->
+	<div class="address-detail">
+		<div class="address-title"><i id="address_hidden"></i>我的地址</div>
+		<ul class="address-list"></ul>
+	</div>
+	<!-- form Temp -->
+	<script id="formTemplate" type="text/template">
+		var data = this.result;
+		<!-- var countDownObjData = data.countDownObjData; -->
+		for(var i = 0; i < data.length; i++) {
+			<!-- countDownObjData[i] = {};
+			countDownObjData[i].id  -->
+			<dl>
+				<dt>#{data[i].time}<p class="#{data[i].formId}"></p></dt>
+				for(var j = 0; j < data[i].list.length; j++){
+					<dd>
+						<img src="#{data[i].list[j].url}">
+						<div>
+							<p>#{data[i].list[j].name}</p>
+							<p class="price">#{data[i].list[j].price}元</p>
+						</div>
+						<div>x#{data[i].list[j].number}</div>
+					</dd>
+				}
+				<p>总价格：<span>#{data[i].totalPrice}元</span></p>
+				<p>订单号：#{data[i].formId}</p>
+				<p>备注：#{data[i].remark}</p>
+				<dd>
+					if (data[i].status == 2) {
+						<span formId="#{data[i].formId}" class="no-pay">已付款</span>
+					} else if (data[i].status == 3) {
+                        <span formId="#{data[i].formId}" class="no-pay">已送达</span>
+                    } else if (data[i].status == 4) {
+                        <span formId="#{data[i].formId}" class="no-pay">已签收</span>
+                    } else {
+						<span formId="#{data[i].formId}" do="pay">付款</span>
+                        <span formId="#{data[i].formId}" class="remove-form" do="delete">删除</span>
+					}
+					<!-- <span>签收</span> -->
+					<span formId="#{data[i].formId}" class="remove-form" do="delete">删除</span>
+				</dd>
+			</dl>
+		}
+	</script>
+	<!-- 地址管理 template -->
+	<script id="addressTemplate" type="text/template">
+		var data = this.result;
+		for(var i = 0; i < data.length; i++) {
+			<li>
+				<div class="edit">
+					<!-- <button code="#{data[i].id}" action="edit">编辑</button> -->
+					<button code="#{data[i].id}" action="delete">删除</button>
+				</div>
+				<div class="my-name">姓名：#{data[i].name}</div>
+				<div class="my-phone">电话：#{data[i].phone}</div>
+				<div class="my-address">地址：#{data[i].address}</div>
+			</li>
+		}
+	</script>
+	<!--=include ./common/foot.html-->
+	<script charset="utf-8" src="../static/js/my.js"></script>
+</body>
+</html>

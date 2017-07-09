@@ -1,0 +1,27 @@
+地址接口 http://localhost:8080/community/query
+
+请求类型：get
+
+    {
+      "result": {
+        "list": [
+          {
+            "time": "",
+            "formUrl": "./agentDetail.html",
+            "imgUrl": "../static/images/default.jpg",
+            "name": "李元霸", 
+            "phone": "10086",
+            "address": "新龙城36d三单元",
+            "formId": "111",
+            "arrive": true
+          }
+        ],
+        "pageNumber": 1,
+        "pageSize": 5,
+        "totalPage": 3,
+        "totalRow": 11
+      },
+      "resultcode": "1",
+      "resultmsg": "查询成功"
+    }
+
