@@ -53,7 +53,6 @@ require([
 
 	}*/
 
-
 	function ajax(url, data, callback) {
 		$.ajax({
 			type: 'get',
@@ -119,6 +118,7 @@ require([
 	ajax(formDetail, {}, setTemplateDom('formTemplate', 'form-detail'));
 	//订单切换
 	$('.form,#form_hidden').on('click', showOrHideMyList('form-detail'));
+
 
 	//删除支付订单逻辑
 	$('.form-detail').on('click', function(e) {

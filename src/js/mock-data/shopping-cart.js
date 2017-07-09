@@ -4,7 +4,11 @@
  */
 define(['../../../node_modules/mockjs/dist/mock-min'],function(Mock){
 	//地址
+<<<<<<< HEAD
 	Mock.mock(/\/address\/query/,
+=======
+	Mock.mock(/http:\/\/localhost:8080\/address\/query/,
+>>>>>>> a1b2cfb1e85f0b86fe283abce03f0cf7303f2a04
 		{
 			"resultcode":1, //1成功 0失败
 			"result|1-3": [
@@ -19,7 +23,11 @@ define(['../../../node_modules/mockjs/dist/mock-min'],function(Mock){
 		}
 	);
 	//订单
+<<<<<<< HEAD
 	Mock.mock(/\/shopping\/query/,
+=======
+	Mock.mock(/http:\/\/localhost:8080\/shopping\/query/,
+>>>>>>> a1b2cfb1e85f0b86fe283abce03f0cf7303f2a04
 		{
 			"result": {
 				"time": 1,
@@ -33,15 +41,23 @@ define(['../../../node_modules/mockjs/dist/mock-min'],function(Mock){
 					    "price": "1.80",
 					    "url": "../static/images/commodity.jpg"
 				  	}
+<<<<<<< HEAD
 				],
 				"remark|20": "备注"
+=======
+				]
+>>>>>>> a1b2cfb1e85f0b86fe283abce03f0cf7303f2a04
 			},
 			"resultcode": "1",
 			"resultmsg": "查询成功"
 		}
 	);
 	//提交订单
+<<<<<<< HEAD
 	Mock.mock(/\/order\/add/,
+=======
+	Mock.mock(/http:\/\/localhost:8080\/order\/add/,
+>>>>>>> a1b2cfb1e85f0b86fe283abce03f0cf7303f2a04
 		{
 			"resultcode":1, //1成功 0失败
 			"result": {

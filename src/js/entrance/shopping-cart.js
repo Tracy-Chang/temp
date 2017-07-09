@@ -21,9 +21,9 @@ require([
 
 	var commodityNumber = {}; //input中已经存在的数量-用于全选的价格计算
 
+
 	var freightPrice = 0,//运费
 		serverTime = util.getCookie('serviceDetail') ? decodeURIComponent(util.getCookie('serviceDetail')) : '配送时间每日早10点到晚8点';
-
 	var addressData = '',  //详细地址-用于数据提交
 		nameData = '',
 		phoneData = ''; 
@@ -39,6 +39,7 @@ require([
 			}
 		});
 	}
+
 
 	//服务时间
 	$('.server-time').html(serverTime);

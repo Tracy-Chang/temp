@@ -45,6 +45,7 @@ require([
 		}
 	}
 
+
 	ajax('get', formPort, {uid: uid, formId: formId}, setTemplateDom('commodityTemplate', 'commodity-info'));
 
 	//支付
