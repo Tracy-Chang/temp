@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>我的</title>
+	<!--=include ./common/meta.html-->
+	<link rel="stylesheet" href="../static/css/question.css">
+</head>
+<body>
+	<div class="title"><a href="./my.html"></a>地心科技</div>
+	<h2>反馈意见</h2>
+	<p>Q1:您的手机号码 (为了更好的处理您的建议，我们建议您留下连续方式)</p>
+	<input class="question" id="phone" type="text" name="">
+	<p>Q2:您还想购买哪些快消品？(零食/日化/饮料)</p>
+	<input class="question" id="commodity" type="text" name="">
+	<p>Q3:您对我们送货时间是否满意？(数字越大表示越满意)</p>
+	<div class="score">
+		<input name="score" type="radio" value="1" /><span>1</span>
+		<input name="score" type="radio" value="2" /><span>2</span>
+		<input name="score" type="radio" value="3" /><span>3</span>
+		<input name="score" type="radio" value="4" /><span>4</span>
+		<input name="score" type="radio" value="5" /><span>5</span>
+		<input name="score" type="radio" value="6" /><span>6</span>
+		<input name="score" type="radio" value="7" /><span>7</span>
+		<input name="score" type="radio" value="8" /><span>8</span>
+		<input name="score" type="radio" value="9" /><span>9</span>
+		<input name="score" type="radio" value="10" checked /><span>10</span>
+	</div>
+	<p>Q4:您的其他建议和意见</p>
+	<textarea class="other" id="other"></textarea>
+	<div class="submit">提交</div>
+	<!--=include ./common/foot.html-->
+	<script charset="utf-8" src="../static/js/question.js"></script>
+</body>
+</html>

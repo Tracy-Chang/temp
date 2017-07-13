@@ -5,13 +5,14 @@
 require([
 	'../modules/util',
 	'../modules/Alert',
-	'../libs/AceTemplate'/*,
-	'../mock-data/shopping-cart'*/
+	'../libs/AceTemplate',
+	'../mock-data/shopping-cart'
 	], function (util, Alert) {
 
 	//接口URL
 	var shoppingCart = location.origin + '/shopping/query',
 		address = location.origin + '/address/query',
+		delOrder = location.origin + '/shopping/delete',
 		orderUrl = location.origin + '/order/add';//下订单url
 	var uid = util.getCookie('uId') || '';
 
@@ -102,7 +103,7 @@ require([
 		}
 	}
 
-	//input失去焦点的处理手段
+	//input失去焦点的处理手段+del订单
 	function loseBlur(value) {
 		return function(data) {
 			$('.commodity-number').on('blur', function() {
@@ -114,10 +115,27 @@ require([
 				}
 			});
 			$('.arrive').html(data.result.time + '分钟内送达');
-			freightPrice = parseFloat(data.result.carriagePrice);
+			//freightPrice = parseFloat(data.result.carriagePrice);
 			//默认全选
 			selectAll();
-			$('.carriagePrice').html('￥' + data.result.carriagePrice + '元');
+			//$('.carriagePrice').html('￥' + 2 + '元');
+			//del订单
+			$('.close').on('click', function(e) {
+				var code = $(this).attr('code');
+				ajax(delOrder, {uid: uid, code: code}, function(data) {
+					data = JSON.parse(data);
+					if (data.resultcode == 1) {
+						$(e.target).parents('li').remove();
+						
+					}
+					Alert(data.resultmsg);
+					delete commodityPrice[code];
+					delete commodityObj[code];
+					delete commodityNumber[code];
+					selectAll();
+				});
+				e.stopPropagation();
+			});
 		}
 	}
 
@@ -170,16 +188,24 @@ require([
 		//触发input标签并且勾选
 		if (e.target.nodeName.toLowerCase() == 'input') {
 			//非空值且非正整数，进入判断
+			if (number > $(e.target).attr('count')) {
+				inputBabel.value = 1;
+				if (commodityObj[code]) {
+					commodityObj[code] = number;
+				}
+				Alert('商品数量不足');
+				//number = Math.abs(number);
+			}
 			if (inputBabel.value !== '' && !/^[1-9]\d*$/.test(inputBabel.value)) {
+				inputBabel.value = 1;
+				if (commodityObj[code]) {
+					commodityObj[code] = number;
+				}
 				Alert('请输入正整数');
-				number = Math.abs(number);
-				inputBabel.value = number;
+				//number = Math.abs(number);
 			}
 			commodityNumber[code] = number;
 			//勾选的时候才收集数据
-			if (commodityObj[code]) {
-				commodityObj[code] = number;
-			}
 		}
 
 		//计算总价逻辑
@@ -290,4 +316,6 @@ require([
 	}
 
 	$('#buy_commodity').on('click', buyCommodity);
+
+
 });

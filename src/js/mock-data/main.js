@@ -4,11 +4,7 @@
  */
 define(['../../../node_modules/mockjs/dist/mock-min'],function(Mock){
 	//地址
-<<<<<<< HEAD
 	Mock.mock(/(\/community\/query|\/community\/query)/,
-=======
-	Mock.mock(/\/\/localhost:8080\/community\/query/,
->>>>>>> a1b2cfb1e85f0b86fe283abce03f0cf7303f2a04
 		{
 			"resultcode":1, //1成功 0失败
 			"result|2-5": [
@@ -27,11 +23,7 @@ define(['../../../node_modules/mockjs/dist/mock-min'],function(Mock){
 		}
 	);
 	//分类
-<<<<<<< HEAD
 	Mock.mock(/(\/lstype\/query|\/lstype\/query)/,
-=======
-	Mock.mock(/\/\/localhost:8080\/lstype\/query/,
->>>>>>> a1b2cfb1e85f0b86fe283abce03f0cf7303f2a04
 		{
 			"resultcode":1,
 			"result": [
@@ -55,20 +47,12 @@ define(['../../../node_modules/mockjs/dist/mock-min'],function(Mock){
 		}
 	);
 	//list
-<<<<<<< HEAD
 	Mock.mock(/(\/ls\/query|\/ls\/query)/,
-=======
-	Mock.mock(/\/\/localhost:8080\/ls\/query/,
->>>>>>> a1b2cfb1e85f0b86fe283abce03f0cf7303f2a04
 		{
 			"result": {
 				"firstPage": true,
 				"lastPage": false,
-<<<<<<< HEAD
 				"list|0-2": [
-=======
-				"list|2": [
->>>>>>> a1b2cfb1e85f0b86fe283abce03f0cf7303f2a04
 				  {
 				    "code": "Lyltsbss001",
 				    "count": "12",
@@ -125,11 +109,7 @@ define(['../../../node_modules/mockjs/dist/mock-min'],function(Mock){
 		}
 	);
 	//购物车
-<<<<<<< HEAD
 	Mock.mock(/(\/shopping\/add|\/shopping\/add)/,
-=======
-	Mock.mock(/\/\/localhost:8080\/shopping\/add/,
->>>>>>> a1b2cfb1e85f0b86fe283abce03f0cf7303f2a04
 		{
 			"resultcode":1, //1成功 0失败
 			"result": [

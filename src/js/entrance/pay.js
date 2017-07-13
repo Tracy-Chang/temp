@@ -40,7 +40,7 @@ require([
 			arriveTime = data.result.time;
 			totalPrice = data.result.totalPrice;
 			$('.' + className).append(AceTemplate.format(id, data));
-			$('.arrive').html(arriveTime + '分钟内送达');
+			$('.arrive').html('平均' + arriveTime + '分钟内送达');
 			$('.total-price').html('￥' + totalPrice + '元');
 		}
 	}
