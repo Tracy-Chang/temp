@@ -6,8 +6,8 @@ require([
 	'../modules/util',
 	'../modules/Alert',
 	'../modules/jweixin-1.1.0',
-	'../libs/AceTemplate'/*,
-	'../mock-data/my'*/
+	'../libs/AceTemplate',
+	// '../mock-data/my'
 	], function (util, Alert) {
 
 	//ajax接口

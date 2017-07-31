@@ -6,7 +6,7 @@ require([
 	'../modules/util',
 	'../modules/Alert',
 	'../libs/AceTemplate',
-	'../mock-data/shopping-cart'
+	// '../mock-data/shopping-cart'
 	], function (util, Alert) {
 
 	//接口URL
@@ -115,7 +115,7 @@ require([
 				}
 			});
 			$('.arrive').html(data.result.time + '分钟内送达');
-			//freightPrice = parseFloat(data.result.carriagePrice);
+			freightPrice = parseFloat(data.result.carriagePrice);
 			//默认全选
 			selectAll();
 			//$('.carriagePrice').html('￥' + 2 + '元');

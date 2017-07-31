@@ -123,7 +123,7 @@ function html(){
 function server(){
 	return connect.server({
 			root: './build',
-			port: 80,
+			port: 8080,
 			livereload: true
 		});
 }

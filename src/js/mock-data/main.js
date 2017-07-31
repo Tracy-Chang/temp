@@ -35,7 +35,7 @@ define(['../../../node_modules/mockjs/dist/mock-min'],function(Mock){
 				{
 					"id": 2,
 					"code": "ls",
-					"name": "零食"
+					"name|3-5": "零"
 				},
 				{
 					"id": 3,

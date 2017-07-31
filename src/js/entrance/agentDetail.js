@@ -4,8 +4,8 @@
  */
 require([
 	'../modules/util',
-	'../libs/AceTemplate'/*,
-	'../mock-data/agentDetail'*/
+	'../libs/AceTemplate',
+	// '../mock-data/agentDetail'
 	], function (util) {
 
 	//接口地址

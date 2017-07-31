@@ -5,7 +5,7 @@
 require([
 	'../modules/util',
 	'../libs/AceTemplate',
-	'../mock-data/main'
+	// '../mock-data/main'
 	], function (util) {
 
 	//接口地址
