@@ -5,13 +5,14 @@
 require([
 	'../modules/util',
 	'../modules/Alert',
-	'../libs/AceTemplate',
-	'../mock-data/agentList'
+	'../libs/AceTemplate'/*,
+	'../mock-data/agentList'*/
 	], function (util, Alert) {
 
 	//接口地址
 	var listUrl = location.origin + '/agent/orderQuery',
 		arriveUrl = location.origin + '/agent/toOrder',
+		getOrderUrl = location.origin + '/agent/toGetOrder',
 		uid =  util.getCookie('uId') || '',
 		loadingImg = 'http://www.earthcenter.com.cn/images/loading.gif',
 		listPage = 1,
@@ -73,18 +74,37 @@ require([
 
 	//订单已送达逻辑
 	$('.list').on('click', function(e) {
-		if (e.target.nodeName.toLowerCase() == 'button' && $(e.target).attr('status').indexOf('not') == -1) {
-			debugger;
+		debugger;
+		if (e.target.nodeName.toLowerCase() == 'button') {
 			var formId = $(e.target).attr('formId');
-			ajax(arriveUrl, {uid: uid, formId: formId}, function(data) {
-				data = JSON.parse(data);
-				if (data.resultcode == '1') {
-					$(e.target).addClass('arrive');
-				} else if (data.resultcode == '0') {
-					Alert(data.resultmsg)
-				}
-			});
-			e.preventDefault();
+			//接单逻辑
+			if ($(e.target).attr('status') == 'notGet') {
+				ajax(getOrderUrl, {uid: uid, formId: formId}, function(data) {
+					debugger;
+					data = JSON.parse(data);
+					if (data.resultcode == '1') {
+						$(e.target).addClass('get');
+						$(e.target).attr('status', 'get');
+						$(e.target).next().removeClass('arrive');
+						$(e.target).next().attr('status', 'notArrive')
+					} else if (data.resultcode == '0') {
+						Alert(data.resultmsg)
+					}
+				});
+			}
+			//送达逻辑
+			if ($(e.target).attr('status') == 'notArrive') {
+				ajax(arriveUrl, {uid: uid, formId: formId}, function(data) {
+					data = JSON.parse(data);
+					if (data.resultcode == '1') {
+						$(e.target).addClass('arrive');
+						$(e.target).attr('status', 'arrive');
+					} else if (data.resultcode == '0') {
+						Alert(data.resultmsg)
+					}
+				});
+			}
 		}
+		e.preventDefault();
 	})
 });

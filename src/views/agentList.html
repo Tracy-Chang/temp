@@ -24,15 +24,15 @@
 						<p>时间：#{data[i].time}</p>
 					</div>
 					<div class="status">
-						if (data[i].get) {
+						if (data[i].getOrder) {
 							<button formId="#{data[i].formId}" status="get" class="get">已接单</button>
 						} else {
 							<button formId="#{data[i].formId}" status="notGet" class="notGet">接单</button>
 						}
-						if (data[i].arrive) {
-							<button formId="#{data[i].formId}" class="arrive">已送达</button>
+						if (data[i].arrive || !data[i].getOrder) {
+							<button formId="#{data[i].formId}" status="arrive" class="arrive">已送达</button>
 						} else {
-							<button formId="#{data[i].formId}" class="notArrive">送达</button>
+							<button formId="#{data[i].formId}" status="notArrive">送达</button>
 						}
 					</div>
 				</a>
