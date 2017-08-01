@@ -23,11 +23,18 @@
 						<p>地址：#{data[i].address}</p>
 						<p>时间：#{data[i].time}</p>
 					</div>
-					if (data[i].arrive) {
-						<button formId="#{data[i].formId}" class="notArrive">已送达</button>
-					} else {
-						<button formId="#{data[i].formId}" class="arrive">送达</button>
-					}
+					<div class="status">
+						if (data[i].get) {
+							<button formId="#{data[i].formId}" status="get" class="get">已接单</button>
+						} else {
+							<button formId="#{data[i].formId}" status="notGet" class="notGet">接单</button>
+						}
+						if (data[i].arrive) {
+							<button formId="#{data[i].formId}" class="arrive">已送达</button>
+						} else {
+							<button formId="#{data[i].formId}" class="notArrive">送达</button>
+						}
+					</div>
 				</a>
 			</li>
 		}

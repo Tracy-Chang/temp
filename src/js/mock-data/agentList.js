@@ -16,7 +16,8 @@ define(['../../../node_modules/mockjs/dist/mock-min'],function(Mock){
 						"phone": "10086",
 						"address": "新龙城36d三单元",
 						"formId": "111",
-						"arrive|1": true
+						"arrive|1": true,
+						"get|1": true
 					}
 				],
 				"pageNumber": 1,
@@ -29,6 +30,13 @@ define(['../../../node_modules/mockjs/dist/mock-min'],function(Mock){
 		}
 	);
 	Mock.mock(/\/agent\/toOrder/,
+		{
+			"resultcode":1, //1成功 0失败
+			"result": [],
+			"resultmsg":"获取成功"
+		}
+	);
+	Mock.mock(/\/agent\/get/,
 		{
 			"resultcode":1, //1成功 0失败
 			"result": [],

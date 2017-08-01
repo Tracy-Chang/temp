@@ -6,7 +6,7 @@ require([
 	'../modules/util',
 	'../modules/Alert',
 	'../libs/AceTemplate',
-	// '../mock-data/agentList'
+	'../mock-data/agentList'
 	], function (util, Alert) {
 
 	//接口地址
@@ -73,12 +73,13 @@ require([
 
 	//订单已送达逻辑
 	$('.list').on('click', function(e) {
-		if (e.target.nodeName.toLowerCase() == 'button') {
+		if (e.target.nodeName.toLowerCase() == 'button' && $(e.target).attr('status').indexOf('not') == -1) {
+			debugger;
 			var formId = $(e.target).attr('formId');
 			ajax(arriveUrl, {uid: uid, formId: formId}, function(data) {
 				data = JSON.parse(data);
 				if (data.resultcode == '1') {
-					$(e.target).addClass('notArrive');
+					$(e.target).addClass('arrive');
 				} else if (data.resultcode == '0') {
 					Alert(data.resultmsg)
 				}
