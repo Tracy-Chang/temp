@@ -40,6 +40,31 @@ define(['../../../node_modules/mockjs/dist/mock-min'],function(Mock){
 			"resultmsg": "查询成功"
 		}
 	);
+	//优惠券list
+	Mock.mock(/\/coupon/,
+		{
+			"resultcode":1, //1成功 0失败
+			"result": [
+				{
+					"id": 1,
+					"type|+1": 1, 
+					"useTime": "2017-09-23",
+					"name": "满五减一",
+					"isUse": true,
+					"typeDetail": [5, 2]
+				},
+				{
+					"id": 2,
+					"type": 2, 
+					"useTime": "2017-09-23",
+					"name": "满五减一",
+					"isUse": true,
+					"typeDetail": 1
+				}
+			],
+			"resultmsg":"获取成功"
+		}
+	);
 	//提交订单
 	Mock.mock(/\/order\/add/,
 		{

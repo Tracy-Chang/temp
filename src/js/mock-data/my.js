@@ -46,6 +46,23 @@ define(['../../../node_modules/mockjs/dist/mock-min'],function(Mock){
 			"resultmsg":"获取成功"
 		}
 	);
+	//优惠券list
+	Mock.mock(/\/coupon/,
+		{
+			"resultcode":1, //1成功 0失败
+			"result|3-5": [
+				{
+					"id|1-3": "1",
+					"type|1-3": "1", //
+					"useTime": "2017-09-23",
+					"name": "满五减一",
+					"isUse|1-2": true,
+					"typeDetail": ""
+				}
+			],
+			"resultmsg":"获取成功"
+		}
+	);
 	//删除地址
 	Mock.mock(/\/address\/delete/,
 		{

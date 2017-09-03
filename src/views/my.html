@@ -11,6 +11,8 @@
 	<div class="user"><div></div></div>
 	<!-- 订单列表 -->
 	<div class="form">我的订单<i></i></div>
+	<!-- 我的优惠券 -->
+	<div class="coupon">我的优惠券<i></i></div>
 	<!-- 地址列表 -->
 	<div class="address">我的地址<i></i></div>
 	<!-- 客服列表 -->
@@ -28,6 +30,11 @@
 	<!-- 我的表单 -->
 	<div class="form-detail">
 		<div class="title"><i id="form_hidden"></i>我的订单</div>
+	</div>
+	<!-- 我的优惠券 -->
+	<div class="coupon-detail">
+		<div class="title"><i id="coupon_hidden"></i>我的优惠券</div>
+		<ul class="coupon-list"></ul>
 	</div>
 	<!-- 我的地址 -->
 	<div class="address-detail">
@@ -55,6 +62,9 @@
 				}
 				<p>总价格：<span>#{data[i].totalPrice}元</span></p>
 				<p>订单号：#{data[i].formId}</p>
+				if (data[i].gift) {
+					<p>优惠：#{data[i].gift}</p>
+				}
 				<p>备注：#{data[i].remark}</p>
 				<dd>
 					if (data[i].status == 2) {
@@ -71,6 +81,24 @@
 					<span formId="#{data[i].formId}" class="remove-form" do="delete">删除</span>
 				</dd>
 			</dl>
+		}
+	</script>
+	<!-- 优惠券 template -->
+	<script id="couponTemplate" type="text/template">
+		var data = this.result;
+		for(var i = 0; i < data.length; i++) {
+			if (!data[i].isUse) {
+				<li class="over-time">
+			} else {
+				<li>
+			}
+				if (!data[i].isUse) {
+					<div class="no-use">已过期</div>
+				}
+				<div class="coupon-title">社区小王代金券</div>
+				<div class="coupon-name">#{data[i].name}</div>
+				<div class="coupon-time"><span>有效期：#{data[i].useTime}</span></div>
+			</li>
 		}
 	</script>
 	<!-- 地址管理 template -->

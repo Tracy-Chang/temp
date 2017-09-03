@@ -31,7 +31,7 @@ body{
 		}
 	}
 }
-.form,.address,.service,.about,.question{
+.form,.coupon,.address,.service,.about,.question{
 	background-color: #fff;
 	font-size: 30px;
 	height: 100px;
@@ -54,7 +54,7 @@ body{
 .form{
 	margin-top: 20px;
 }
-.form:before{
+.coupon:before,.form:before{
     content: "";
     background-image: url(../images/my-dingdan.png);
     width: 40px;
@@ -219,6 +219,66 @@ body{
     	line-height: 100px;
 	}
 }
+.coupon-detail{
+	width: 100%;
+	height: 100vh;
+	position: fixed;
+	top: 0;
+	background-color: #f0f0f0;
+	font-size: 30px;
+	display: none;
+	.title{
+		background-color: #fff;
+		height: 80px;
+		margin-bottom: 20px;
+		text-align: center;
+		line-height: 80px;
+		overflow: hidden;
+		i{
+			width: 20px;
+			height: 20px;
+			border-top: 2px solid #333;
+			border-left: 2px solid #333;
+			display: inline-block;
+			transform: rotateZ(-45deg);
+			float: left;
+			margin: 31px 30px;
+			position: absolute;
+    		left: 0;
+		}
+	}
+	li{
+		background-color: #fff;
+		border-bottom: 1px solid #ccc;
+		overflow: hidden;
+		div{
+			margin: 20px 30px;
+		}
+		.coupon-title{
+			font-size: 30px;
+		}
+		.coupon-name{
+			font-size: 28px;
+		}
+		.coupon-time{
+			font-size: 24px;
+			overflow: hidden;
+			//border-top: 1px solid #ccc; /* px */
+			span{
+				float: right;
+			}
+		}
+		.no-use{
+			float: right;
+			line-height: 50px;
+			font-size: 24px;
+		}
+	}
+	.over-time{
+		background-color: #eee;
+		color: #ccc;
+	}
+}
 .address-detail{
 	width: 100%;
 	height: 100vh;
@@ -276,3 +336,18 @@ body{
     	line-height: 100px;
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

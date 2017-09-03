@@ -12,6 +12,7 @@ require([
 	//接口URL
 	var shoppingCart = location.origin + '/shopping/query',
 		address = location.origin + '/address/query',
+		couponDetail = location.origin + '/order/coupon',
 		delOrder = location.origin + '/shopping/delete',
 		orderUrl = location.origin + '/order/add';//下订单url
 	var uid = util.getCookie('uId') || '';
@@ -22,6 +23,13 @@ require([
 
 	var commodityNumber = {}; //input中已经存在的数量-用于全选的价格计算
 
+	var discount = 0;//优惠价
+	var couponId = ''; //优惠券id
+	var discountData = null;//优惠券data
+	var outAllPrice = 0; //总价格
+	var outAllPricePlusNoCoupon = 0; //不加优惠券
+	var outAllPricePlus = 0; //加运费价格
+	var overPrice = 0; //加运费价格
 
 	var freightPrice = 0,//运费
 		serverTime = util.getCookie('serviceDetail') ? decodeURIComponent(util.getCookie('serviceDetail')) : '配送时间每日早10点到晚8点';
@@ -44,6 +52,84 @@ require([
 
 	//服务时间
 	$('.server-time').html(serverTime);
+
+
+	/**
+	 * [切换DOM结构的展示或隐藏]
+	 * @param  {[type]} className [切换的类名]
+	 * @return {[type]}           [description]
+	 */
+	function showOrHideMyList(className) {
+		return function() {
+			if ($('.' + className).css('display') == 'block') {
+				$('.' + className).hide();
+			} else {
+				$('.' + className).show();
+			}
+		}
+	}
+	//优惠券
+	//优惠券DOM生成
+	ajax(couponDetail, {}, setTemplateDom('couponTemplate', 'coupon-list', function(data) {
+		discountData = data.result;
+	}));
+	//我的优惠券切换
+	$('.coupon,#coupon_hidden').on('click', showOrHideMyList('coupon-detail'));
+	//优惠计算
+	function calculateDiscount(id) {
+		var dataArray = discountData.filter(function(item, index) {
+			return item.id == id;
+		})
+		data = dataArray[0];
+		switch (data.type) {
+			case 1: 
+				if (outAllPricePlusNoCoupon >= data.typeDetail[0]) {
+					overPrice = data.typeDetail[0];
+					discount = data.typeDetail[1];
+					$('.discount').html('￥-' + discount + '元');
+					$('.coupon-detail').hide();
+					outAllPricePlus = Math.round((outAllPricePlusNoCoupon - data.typeDetail[1])*100)/100;
+					$('.allPrice')[1].innerHTML = '￥' + outAllPricePlus + '元';
+					couponId = data.id;
+				} else {
+					Alert("此优惠券不能用")
+				}
+				break;
+			case 2:
+				overPrice = 0;
+				discount = data.typeDetail;
+				$('.discount').html('￥-' + discount + '元');
+				$('.coupon-detail').hide();
+				outAllPricePlus = Math.round((outAllPricePlusNoCoupon - data.typeDetail)*100)/100;
+				$('.allPrice')[1].innerHTML = '￥' + outAllPricePlus + '元';
+				couponId = data.id;
+				break;
+			case 3:
+				if (outAllPricePlusNoCoupon >= data.typeDetail[0]) {
+					overPrice = data.typeDetail[0];
+					discount = data.typeDetail[1];
+					$('.discount').html(discount);
+					$('.coupon-detail').hide();
+					couponId = data.id;
+				} else {
+					Alert("此优惠券不能用")
+				}
+				break;
+			case 4:
+				overPrice = 0;
+				discount = data.typeDetail;
+				$('.discount').html(discount);
+				$('.coupon-detail').hide();
+				couponId = data.id;
+				break;
+			default:
+				break;
+		}
+	}
+	$('.coupon-list').on('click', function(e) {
+		var id = $(e.target).closest('li').attr('id');
+		calculateDiscount(id);
+	});
 
 	//地址逻辑
 	
@@ -214,9 +300,18 @@ require([
 			allPrice = Math.round(allPrice * 100)/100;
 			allPricePlus = Math.round((allPrice + freightPrice)*100)/100;
 		}
+		//结果输入外层作用域
+		outAllPrice = allPrice;
+		outAllPricePlusNoCoupon = allPricePlus;
+		if (outAllPricePlusNoCoupon < overPrice) {
+			couponid = '';	
+			discount = 0;
+			$('.discount').html('￥' + discount + '元');
+		}
+		outAllPricePlus = Math.round((allPricePlus - discount)*100)/100;
 		//
-		$('.allPrice')[0].innerHTML = '￥' + allPrice + '元';
-		$('.allPrice')[1].innerHTML = '￥' + allPricePlus + '元';
+		$('.allPrice')[0].innerHTML = '￥' + outAllPrice + '元';
+		$('.allPrice')[1].innerHTML = '￥' + outAllPricePlus + '元';
 	});
 
 	//全部勾选操作
@@ -242,9 +337,19 @@ require([
 				allPrice = Math.round(allPrice * 100)/100;
 				allPricePlus = Math.round((allPrice + freightPrice)*100)/100;
 			}
+			//结果输入外层作用域
+			outAllPrice = allPrice;
+			outAllPricePlusNoCoupon = allPricePlus;
+			if (outAllPricePlusNoCoupon < overPrice) {
+				couponid = '';	
+				discount = 0;
+				$('.discount').html('￥' + discount + '元');
+			}
+			outAllPricePlus = Math.round((allPricePlus - discount)*100)/100;
+
 			//
-			$('.allPrice')[0].innerHTML = '￥' + allPrice + '元';
-			$('.allPrice')[1].innerHTML = '￥' + allPricePlus + '元';
+			$('.allPrice')[0].innerHTML = '￥' + outAllPrice + '元';
+			$('.allPrice')[1].innerHTML = '￥' + outAllPricePlus + '元';
 		}
 	});
 
@@ -265,6 +370,16 @@ require([
 			allPrice = Math.round(allPrice * 100)/100;
 			allPricePlus = Math.round((allPrice + freightPrice)*100)/100;
 		}
+		//结果输入外层作用域
+		outAllPrice = allPrice;
+		outAllPricePlusNoCoupon = allPricePlus;
+		if (outAllPricePlusNoCoupon < overPrice) {
+			couponid = '';	
+			discount = 0;
+			$('.discount').html('￥' + discount + '元');
+		}
+		outAllPricePlus = Math.round((allPricePlus - discount)*100)/100;
+
 		//
 		$('.allPrice')[0].innerHTML = '￥' + allPrice + '元';
 		$('.allPrice')[1].innerHTML = '￥' + allPricePlus + '元';
@@ -304,6 +419,7 @@ require([
 		data.phone = phoneData;
 		data.address = addressData;
 		data.remark = remark;
+		data.couponid = couponId;
 		data.list = JSON.stringify(commodityObj);
 		ajax(orderUrl, data, function(data) {
 			data = JSON.parse(data);

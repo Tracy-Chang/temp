@@ -12,6 +12,7 @@ require([
 
 	//ajax接口
 	var formDetail = location.origin + '/order/queryU',
+		couponDetail = location.origin + '/order/coupon',
 		addressDetail = location.origin + '/address/query',
 		delFormPort = location.origin + '/order/delete',
 		delAddressPort = location.origin + '/address/delete',
@@ -102,10 +103,8 @@ require([
 	function setTemplateDom(id, className) {
 		return function(data) {
 			data = JSON.parse(data);
-			//countDownObjData = data.countDownObjData;
 			if (data.result.length > 0) {
 				$('.' + className).append(AceTemplate.format(id, data));
-				//countDown(1497770850934, 149777234567, 40, 'time');
 			} else {
 				$('.' + className).append('<div class="no-data">没有更多数据了~</div>');
 			}
@@ -177,6 +176,11 @@ require([
 	ajax(addressDetail, {}, setTemplateDom('addressTemplate', 'address-list'));
 	//我的地址切换
 	$('.address,#address_hidden').on('click', showOrHideMyList('address-detail'));
+
+	//优惠券DOM生成
+	ajax(couponDetail, {}, setTemplateDom('couponTemplate', 'coupon-list'));
+	//我的优惠券切换
+	$('.coupon,#coupon_hidden').on('click', showOrHideMyList('coupon-detail'));
 
 	/**
 	 * 删除地址后的callback

@@ -25,7 +25,7 @@
 	<ul class="commodity-info">
 		<li>商品价格<span class="allPrice">￥0元</span></li>
 		<li>配送费<span class="carriagePrice">￥2元</span></li>
-		<li>优惠<span class="discount">￥0元</span></li>
+		<li class="coupon">优惠券(可选择)<i></i><span class="discount">￥0元</span></li>
 	</ul>
 	<!-- 下单 -->
 	<ul class="buy">
@@ -33,6 +33,29 @@
 		<li>合计<span class="allPrice">￥0元</span></li>
 		<li id="buy_commodity">去下单<i></i></li>
 	</ul>
+	<!-- 我的优惠券 -->
+	<div class="coupon-detail">
+		<div class="title"><i id="coupon_hidden"></i>我的优惠券</div>
+		<ul class="coupon-list"></ul>
+	</div>
+	<!-- 优惠券 template -->
+	<script id="couponTemplate" type="text/template">
+		var data = this.result;
+		for(var i = 0; i < data.length; i++) {
+			if (!data[i].isUse) {
+				<li class="over-time">
+			} else {
+				<li id=#{data[i].id}>
+			}
+				if (!data[i].isUse) {
+					<div class="no-use">已过期</div>
+				}
+				<div class="coupon-title">社区小王代金券</div>
+				<div class="coupon-name">#{data[i].name}</div>
+				<div class="coupon-time"><span>有效期：#{data[i].useTime}</span></div>
+			</li>
+		}
+	</script>
 	<!-- 底部导航 -->
 	<ul class="bottom-nav">
 		<li><a href="./main.html"><img src="../static/images/index.png"><span>首页</span></a></li>
