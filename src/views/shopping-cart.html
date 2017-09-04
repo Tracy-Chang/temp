@@ -42,12 +42,14 @@
 	<script id="couponTemplate" type="text/template">
 		var data = this.result;
 		for(var i = 0; i < data.length; i++) {
-			if (!data[i].isUse) {
-				<li class="over-time">
+			if (data[i].isUse == 2 || data[i].isUse == 3) {
+				<li class="over-time" id="">
 			} else {
 				<li id=#{data[i].id}>
 			}
-				if (!data[i].isUse) {
+				if (data[i].isUse == 2) {
+					<div class="no-use">已使用</div>
+				} else if (data[i].isUse == 3) {
 					<div class="no-use">已过期</div>
 				}
 				<div class="coupon-title">社区小王代金券</div>

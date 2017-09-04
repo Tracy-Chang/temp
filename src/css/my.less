@@ -227,6 +227,7 @@ body{
 	background-color: #f0f0f0;
 	font-size: 30px;
 	display: none;
+	overflow: auto;
 	.title{
 		background-color: #fff;
 		height: 80px;
@@ -247,36 +248,41 @@ body{
     		left: 0;
 		}
 	}
-	li{
-		background-color: #fff;
-		border-bottom: 1px solid #ccc;
-		overflow: hidden;
-		div{
-			margin: 20px 30px;
-		}
-		.coupon-title{
-			font-size: 30px;
-		}
-		.coupon-name{
-			font-size: 28px;
-		}
-		.coupon-time{
-			font-size: 24px;
+	.coupon-list:last-child{
+		li{
+			background-color: #fff;
+			border-bottom: 1px solid #ccc;
 			overflow: hidden;
-			//border-top: 1px solid #ccc; /* px */
-			span{
+			div{
+				margin: 20px 30px;
+			}
+			.coupon-title{
+				font-size: 30px;
+			}
+			.coupon-name{
+				font-size: 28px;
+			}
+			.coupon-time{
+				font-size: 24px;
+				overflow: hidden;
+				//border-top: 1px solid #ccc; /* px */
+				span{
+					float: right;
+				}
+			}
+			.no-use{
 				float: right;
+				line-height: 50px;
+				font-size: 24px;
 			}
 		}
-		.no-use{
-			float: right;
-			line-height: 50px;
-			font-size: 24px;
+		.over-time{
+			background-color: #eee;
+			color: #ccc;
 		}
 	}
-	.over-time{
-		background-color: #eee;
-		color: #ccc;
+	.coupon-list:last-child{
+		margin-bottom: 110px;
 	}
 }
 .address-detail{

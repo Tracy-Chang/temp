@@ -77,6 +77,9 @@ require([
 	$('.coupon,#coupon_hidden').on('click', showOrHideMyList('coupon-detail'));
 	//优惠计算
 	function calculateDiscount(id) {
+		if (!id) {
+			return
+		}
 		var dataArray = discountData.filter(function(item, index) {
 			return item.id == id;
 		})
