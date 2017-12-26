@@ -2,9 +2,9 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>订单详情</title>
+	<title>S便利</title>
 	<!--=include ./common/meta.html-->
-	<link rel="stylesheet" href="../static/css/agentDetail.css">
+	<link rel="stylesheet" href="../gulpStatic/css/zhuzaiAgentDetail.css">
 </head>
 <body>
 	<!-- title -->
@@ -12,17 +12,19 @@
 	<!-- list -->
 	<div class="form-detail"></div>
 	<script id="formTemplate" type="text/template">
-		var data = this.result;
+		var data = this.resultdata;
 		<dl>
 			<dt>订单内容</dt>
-			for(var j = 0; j < data.length; j++){
+			for(var j = 0; j < data.list.length; j++){
 				<dd>
-					<img src="#{data[j].url}">
+					<img src="#{data.list[j].url}">
 					<div>
-						<p>#{data[j].name}</p>
-						<p class="price">#{data[j].price}元</p>
+						<p>名称：#{data.list[j].name}</p>
+						<p class="price">价格：#{data.list[j].price}元</p>
+						<p>种类：data.list[j].type}</p>
+						<p>商品来源：#{data.list[j].source}</p>
 					</div>
-					<div>x#{data[j].number}</div>
+					<div>x#{data.list[j].number}</div>
 				</dd>
 			}
 			<dd>
@@ -30,16 +32,13 @@
 				<p>姓名：#{data.name}</p>
 				<p>电话：#{data.phone}</p>
 				<p>地址：#{data.address}</p>
-				<p>订单号：#{data.formId}</p>
-				if (data.gift) {
-					<p>优惠：#{data.gift}</p>
-				}
+				<p>取货方式：#{data.type}</p>
 				<p>备注：#{data.remark}</p>
 				<p>时间：#{data.time}</p>
 			</dd>
 		</dl>
 	</script>
 	<!--=include ./common/foot.html-->
-	<script charset="utf-8" src="../static/js/agentDetail.js"></script>
+	<script charset="utf-8" src="../gulpStatic/js/zhuzaiAgentDetail.js"></script>
 </body>
 </html>

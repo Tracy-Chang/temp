@@ -21,8 +21,8 @@ var	htmlmin            = require('gulp-htmlmin'); 			//html压缩
 var processors = [
 		//雪碧图
 		/*sprites({
-			stylesheetPath: 'build/static/css',
-    		spritePath: 'build/static/images',
+			stylesheetPath: 'build/gulpStatic/css',
+    		spritePath: 'build/gulpStatic/images',
     		filterBy: function(image) {
 		        // slice文件夹下才做合并
 		        if (!/.slice\/.*\.png$/.test(image.url)) {
@@ -42,7 +42,7 @@ var processors = [
 
 //清除构建后的样式
 function cleanstyle(){
-	return gulp.src('build/static/css/**/*.css')
+	return gulp.src('build/gulpStatic/css/**/*.css')
 			.pipe(clean({force: true}))
 }
 //样式构建 
@@ -53,25 +53,25 @@ function style(){
 			.on('error', function (error) {
 	            console.log(error.message);
 	        })
-			.pipe(gulp.dest('build/static/css'));
+			.pipe(gulp.dest('build/gulpStatic/css'));
 }
 
 
 //清除构建后的字体
 function cleanfont(){
-	return gulp.src('build/static/font/*.*')
+	return gulp.src('build/gulpStatic/font/*.*')
 			.pipe(clean({force: true}));
 }
 //移动icon字体至构建文件
 function font(){
 	return gulp.src('src/font/*')
-			.pipe(gulp.dest('build/static/font'));
+			.pipe(gulp.dest('build/gulpStatic/font'));
 }
 
 
 //清除构建后的图片
 function cleanimages(){
-	return gulp.src('build/static/images/**/*.{png,jpg,gif}')
+	return gulp.src('build/gulpStatic/images/**/*.{png,jpg,gif}')
 			.pipe(clean({force: true}))
 			.on('error', function(error){
 				console.log(error);
@@ -80,12 +80,12 @@ function cleanimages(){
 //图片task
 function images(){
 	return gulp.src('src/image/**/*.{png,jpg,gif}')
-			.pipe(gulp.dest('build/static/images'));
+			.pipe(gulp.dest('build/gulpStatic/images'));
 }
 
 //清除构建后的js
 function cleanjs(){
-	return gulp.src('build/static/js/**/*.*')
+	return gulp.src('build/gulpStatic/js/**/*.*')
 			.pipe(clean({force: true}));
 }
 //jsamd task
@@ -97,14 +97,14 @@ function jsamd(){
 			.on('error', function (error) {
 	            console.log(error.message);
 	        })
-			.pipe(gulp.dest('build/static/js'));
+			.pipe(gulp.dest('build/gulpStatic/js'));
 }
 
 //bound task
 function boundle(){
 	return gulp.src(['src/js/libs/zepto.min.js', 'src/js/libs/require.min.js'])
 			.pipe(concat('boundle.min.js'))
-			.pipe(gulp.dest('build/static/js'));
+			.pipe(gulp.dest('build/gulpStatic/js'));
 }
 
 //清除构建后的html
@@ -123,7 +123,7 @@ function html(){
 function server(){
 	return connect.server({
 			root: './build',
-			port: 8080,
+			port: 9999,
 			livereload: true
 		});
 }
@@ -317,49 +317,49 @@ function htmlCdn(){
 	return gulp.src('build/views/**/*.html')
 			.pipe(cdnizer([
 				{
-					file: '/static/css/**/*.css',
-					cdn: publishcssUrl + '/${filepath.replace("/static/css/", "")}'
+					file: '/gulpStatic/css/**/*.css',
+					cdn: publishcssUrl + '/${filepath.replace("/gulpStatic/css/", "")}'
 				},
 				{
-					file: '/static/js/boundle.min.js',
-					cdn: publishjsUrl + '/${filepath.replace("/static/js/", "")}'
+					file: '/gulpStatic/js/boundle.min.js',
+					cdn: publishjsUrl + '/${filepath.replace("/gulpStatic/js/", "")}'
 				},
 				{
-					file: '/static/js/**/*.js',
-					cdn: publishjsUrl + '/${filepath.replace("/static/js/", "")}'
+					file: '/gulpStatic/js/**/*.js',
+					cdn: publishjsUrl + '/${filepath.replace("/gulpStatic/js/", "")}'
 				},
 				{
-					file: '/static/images/**/*.{jpg,png}',
-					cdn: publishimageUrl + '/${filepath.replace("/static/images/", "")}'
+					file: '/gulpStatic/images/**/*.{jpg,png}',
+					cdn: publishimageUrl + '/${filepath.replace("/gulpStatic/images/", "")}'
 				}
 			]))
 			.pipe(gulp.dest('build/views/'));
 }
 
 function fontCdn(){
-	return gulp.src('build/static/css/**/*.css')
+	return gulp.src('build/gulpStatic/css/**/*.css')
 			.pipe(cdnizer([
 				{
 					file: '**/*.{eot,woff,ttf,svg}',
 					cdn: fontUrl+'/${filename}'
 				}
 			]))
-			.pipe(gulp.dest('build/static/css/'));
+			.pipe(gulp.dest('build/gulpStatic/css/'));
 }
 
-function ftpStatic(){
-	return gulp.src('build/static/**/*')
+function ftpgulpStatic(){
+	return gulp.src('build/gulpStatic/**/*')
 			.pipe(ftp({
 				host: '192.168.119.5',
 				user: 'qatest',
 				pass: 'ftp@fe',
-				remotePath: '/static.58.com/crop/zcm/dingding'
+				remotePath: '/gulpStatic.58.com/crop/zcm/dingding'
 			})).pipe(gutil.noop());
 }
 
 
 function ftpFont(){
-	return gulp.src('build/static/font/**')
+	return gulp.src('build/gulpStatic/font/**')
 			.pipe(ftp({
 				host: '192.168.119.5',
 				user: 'qatest',
@@ -384,7 +384,7 @@ gulp.task('publish', gulp.series(
 	html,
 	htmlCdn
 	// fontCdn
-	/*ftpStatic,
+	/*ftpgulpStatic,
 	ftpFont*/
 ));
 
@@ -393,19 +393,19 @@ gulp.task('test', gulp.series(
 ));
 
 function minifyCSS(){
-	return gulp.src('build/static/css/**/*')
+	return gulp.src('build/gulpStatic/css/**/*')
 			.pipe(cleanCSS())
-			.pipe(gulp.dest('build/static/css'));
+			.pipe(gulp.dest('build/gulpStatic/css'));
 }
 function uglifyJs(){
-	return gulp.src('build/static/js/**/*')
+	return gulp.src('build/gulpStatic/js/**/*')
 			.pipe(uglify())
-			.pipe(gulp.dest('build/static/js'));
+			.pipe(gulp.dest('build/gulpStatic/js'));
 }
 function miniimg(){
-	return gulp.src('build/static/images/**/*')
+	return gulp.src('build/gulpStatic/images/**/*')
 			.pipe(imagemin())
-			.pipe(gulp.dest('build/static/images'));
+			.pipe(gulp.dest('build/gulpStatic/images'));
 }
 
 gulp.task('release', gulp.series(
@@ -425,7 +425,7 @@ gulp.task('release', gulp.series(
 	minifyCSS,
 	uglifyJs
 	//miniimg
-	/*ftpStatic,
+	/*ftpgulpStatic,
 	ftpFont*/
 ));
 
